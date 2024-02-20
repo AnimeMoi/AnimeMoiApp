@@ -9,6 +9,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import com.example.animemoi_app.common.ButtonCommon
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.animemoi_app.common.Bar
 import com.example.animemoi_app.ui.theme.AnimeMoi_AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,6 +32,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting() {
+    Bar()
     ButtonCommon(
         text = "Click me",
         onClick = { /* TODO: Handle button click */ },
