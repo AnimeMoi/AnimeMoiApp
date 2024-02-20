@@ -6,7 +6,6 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 
 
@@ -46,7 +45,3 @@ val listOfNavItem : List<NavItem> = listOf(
 )
 
 
-@Composable
-fun NavBar(){
-
-}
