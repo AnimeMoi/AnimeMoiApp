@@ -13,10 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,36 +31,42 @@ fun ListSourceComic(sources: List<String>) {
         Modifier
             .background(Color.Black)
             .fillMaxWidth()
-            .height(40.dp)
+            .height(50.dp)
     ) {
         items(sources) { item ->
-            Source(source = item)
+            Source(
+                source = item,
+                isSelect = selectedSourceIndex == sources.indexOf(item)) {
+                selectedSourceIndex = sources.indexOf(item)
+            }
         }
     }
 }
 
 @Composable
-fun Source(source: String) {
-    var isClicked by remember { mutableStateOf(false) }
-
+fun Source(source: String, isSelect: Boolean, onClick: () -> Unit) {
     Surface(
-        onClick = {
-            isClicked = !isClicked
-        },
-        color = Color.Transparent,
+        onClick = onClick,
+        color = Color.Transparent ,
         modifier = Modifier
             .fillMaxHeight()
-            .background(if (isClicked) Color.Red else Color.Transparent)
-            .padding(10.dp, 0.dp, 10.dp, 0.dp)
+            .padding(15.dp)
+            .drawBehind {
+                drawLine(
+                    color = if (isSelect) Color(0xFFFF6666) else Color.Transparent ,
+                    start = Offset(0f, size.height),
+                    end = Offset(size.width, size.height),
+                    strokeWidth = 3.dp.toPx()
+                )
+            },
     ) {
         Text(
             text = source,
-            color = Color.White,
+            color = if (isSelect) Color(0xFFFF6666) else Color.White ,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(10.dp)
+                .fillMaxSize(),
         )
     }
 }
@@ -70,3 +77,4 @@ fun PreviewListSourceComic() {
     val sources = listOf("Nettruyen", "BaoTangTruyen", "Yurineko")
     ListSourceComic(sources)
 }
+
