@@ -5,16 +5,22 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
+
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -26,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import java.time.format.TextStyle
 
 
 @ExperimentalMaterial3Api
@@ -41,76 +48,72 @@ fun searchBar() {
     }
 
     val contextForToast = LocalContext.current.applicationContext
-
     //previous search terms
     val historyItems = remember {
         mutableStateListOf("SemicolonSpace","Jetpack Compose","Android")
     }
-    SearchBar(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = if (isActive) 0.dp else 8.dp),
-        query = queryString,
-        onQueryChange = { newQueryString ->
-            queryString = newQueryString
-            if (newQueryString.isNotEmpty()) Color.White else Color.Gray
-        },
-        onSearch = {
-            isActive = false
-            Toast.makeText(contextForToast, "Your query string: $queryString", Toast.LENGTH_SHORT)
-                .show()
-            historyItems.add(queryString)
+        SearchBar(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = if (isActive) 0.dp else 8.dp),
+            query = queryString,
+            onQueryChange = { newQueryString ->
+                queryString = newQueryString
+            },
+            onSearch = {
+                isActive = false
+                Toast.makeText(contextForToast, "Your query string: $queryString", Toast.LENGTH_SHORT)
+                    .show()
+                historyItems.add(queryString)
 
-        },
-        active = isActive,
-        onActiveChange = { activeChange ->
-            isActive = activeChange
-        },
-        placeholder = {
-            if(queryString.isNotEmpty()){
-                Text(text = queryString, color = Color.White)
-            }else{
-                Text(text = "Tìm kiếm....", color = Color.White)
-            }
-        },
-        leadingIcon = {
-            Icon(imageVector = Icons.Default.Search, contentDescription = null, tint = Color.White)
-        },
-        trailingIcon = {
-            if (isActive) {
-                Icon(
-                    modifier = Modifier.clickable {
-                        if (queryString.isNotEmpty()) {
-                            queryString = ""
-                        } else {
-                            isActive = false
+            },
+            active = isActive,
+            onActiveChange = { activeChange ->
+                isActive = activeChange
+            },
+            placeholder = {
+                Text(text = "Tìm kiếm...", color = Color.White)
+            },
+            leadingIcon = {
+                Icon(imageVector = Icons.Default.Search, contentDescription = null, tint = Color.White)
+            },
+            trailingIcon = {
+                if (isActive) {
+                    Icon(
+                        modifier = Modifier.clickable {
+                            if (queryString.isNotEmpty()) {
+                                queryString = ""
+                            } else {
+                                isActive = false
+                            }
+                        },
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "Close Icon"
+                    )
+                }
+            },
+            colors = SearchBarDefaults.colors(
+                Color.Black, Color(0xFFFF6666), TextFieldDefaults.colors(Color.White)
+            ),
+            content = {
+                    //this is a column scope
+                    //all the items are displayed vertically
+                    historyItems.forEach{ historyItem ->
+                        Row (modifier = Modifier.padding(all = 16.dp)){
+                            Icon(
+                                modifier = Modifier.padding(end = 12.dp),
+                                imageVector = Icons.Default.Refresh, contentDescription = null,
+                                tint = Color.White
+                            )
+                            Text(text = historyItem, color = Color.White)
                         }
-                    },
-                    imageVector = Icons.Default.Close,
-                    contentDescription = "Close Icon"
-                )
-
-
+                    }
             }
 
-        },
-        colors = SearchBarDefaults.colors(
-            Color.Black, Color.White, TextFieldDefaults.colors(Color.White)
-        ),
-    ){
-        //this is a column scope
-        //all the items are displayed vertically
-        historyItems.forEach{ historyItem ->
-            Row (modifier = Modifier.padding(all = 16.dp)){
-                Icon(
-                    modifier = Modifier.padding(end = 12.dp),
-                    imageVector = Icons.Default.Refresh, contentDescription = null,
-                    tint = Color.White
-                )
-                Text(text = historyItem, color = Color.White)
-            }
-        }
-    }
+        )
+       
+
+
 
 }
 
