@@ -1,8 +1,7 @@
 package com.example.animemoi_app.common.comic
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
@@ -17,6 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.UiMode
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
@@ -29,30 +30,38 @@ fun Comic(
     views: Int = 0,
     follow: Int = 0
 ) {
-    Card(modifier = Modifier.background(Color.Transparent)) {
+    Column {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current).data(imageUrl).crossfade(true)
                 .build(),
             contentDescription = null,
-            contentScale = ContentScale.Fit,
+            contentScale = ContentScale.Crop,
         )
-        Card(
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceAround,
+        if (moreInfo) {
+            Box(
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
-                Row {
-                    Icon(Icons.Default.Star, contentDescription = null)
-                    Text(star.toString())
-                }
-                Row {
-                    Icon(Icons.Default.Add, contentDescription = null)
-                    Text(views.toString())
-                }
-                Row {
-                    Icon(Icons.Default.Favorite, contentDescription = null)
-                    Text(follow.toString())
+                Row(
+                    horizontalArrangement = Arrangement.SpaceAround,
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .padding(start = 8.dp, top = 0.dp, end = 0.dp, bottom = 0.dp),
+                    ) {
+                        Icon(Icons.Default.Star, contentDescription = null)
+                        Text(star.toString())
+                    }
+                    Row {
+                        Icon(Icons.Default.Add, contentDescription = null)
+                        Text(views.toString())
+                    }
+                    Row(
+                        modifier = Modifier
+                            .padding(start = 0.dp, top = 0.dp, end = 8.dp, bottom = 0.dp),
+                    ) {
+                        Icon(Icons.Default.Favorite, contentDescription = null)
+                        Text(follow.toString())
+                    }
                 }
             }
         }
