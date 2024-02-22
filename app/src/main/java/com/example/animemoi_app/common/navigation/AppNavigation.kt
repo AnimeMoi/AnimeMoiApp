@@ -1,9 +1,12 @@
 package com.example.animemoi_app.common.navigation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -14,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -22,6 +26,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.screen.CategoryScreen
 import com.example.animemoi_app.screen.HistoryScreen
 import com.example.animemoi_app.screen.HomeeScreen
@@ -37,6 +42,7 @@ fun AppNavigation() {
             NavigationBar (
                 containerColor = Color.Black,
                 modifier = Modifier
+                    .background(Color.Black)
                     .graphicsLayer {
                         shape = RoundedCornerShape(
                             topEnd = 10.dp,
@@ -44,6 +50,7 @@ fun AppNavigation() {
                         )
                         clip = true
                     }
+
             ){
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
@@ -102,6 +109,10 @@ fun AppNavigation() {
             }
         }
     }
+}@Preview
+@Composable
+fun AppNavigationPreview() {
+    AppNavigation()
 }
 
 

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AnimeMoi</string>
+    <string name="cm01">HƯỚNG DẪN CHĂM SÓC TIỂU ZOMBIE</string>
+    <string name="cm02">Thần Đạo Đan Tôn</string>
+    <string name="cm03">Linh Vũ Thiên Hạ</string>
+    <string name="cm04">Đấu Phá Thương Khung</string>
+    <string name="cm05">Mê Vợ Không Lối Về</string>
+    <string name="cm06">Thế Giới Hoàn Mỹ</string>
+    <string name="cm07">Phàm Nhân Tu Tiên</string>
+    <string name="cm08">Nhất Niệm Vĩnh Hằng</string>
+    <string name="cm09">Đế Bá</string>
+    <string name="cm10">Tiên Nghịch</string>
+    <string name="cm11">Rể Quý Trời Cho</string>
 </resources>

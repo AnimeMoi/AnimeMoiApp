@@ -36,7 +36,8 @@ fun ListSourceComic(sources: List<String>) {
         items(sources) { item ->
             Source(
                 source = item,
-                isSelect = selectedSourceIndex == sources.indexOf(item)) {
+                isSelect = selectedSourceIndex == sources.indexOf(item)
+            ) {
                 selectedSourceIndex = sources.indexOf(item)
             }
         }
@@ -47,13 +48,13 @@ fun ListSourceComic(sources: List<String>) {
 fun Source(source: String, isSelect: Boolean, onClick: () -> Unit) {
     Surface(
         onClick = onClick,
-        color = Color.Transparent ,
+        color = Color.Transparent,
         modifier = Modifier
             .fillMaxHeight()
             .padding(15.dp)
             .drawBehind {
                 drawLine(
-                    color = if (isSelect) Color(0xFFFF6666) else Color.Transparent ,
+                    color = if (isSelect) Color(0xFFFF6666) else Color.Transparent,
                     start = Offset(0f, size.height),
                     end = Offset(size.width, size.height),
                     strokeWidth = 3.dp.toPx()
@@ -62,7 +63,7 @@ fun Source(source: String, isSelect: Boolean, onClick: () -> Unit) {
     ) {
         Text(
             text = source,
-            color = if (isSelect) Color(0xFFFF6666) else Color.White ,
+            color = if (isSelect) Color(0xFFFF6666) else Color.White,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="thieunhi">Thiếu Nhi</string>
+    <string name="tth">Trinh Thám</string>
+    <string name="mg">Manga</string>
+    <string name="anime">Anime</string>
+    <string name="trtr">Truyện Tranh</string>
+</resources>
