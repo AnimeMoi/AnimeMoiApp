@@ -24,80 +24,72 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.screen.CategoryScreen
 import com.example.animemoi_app.screen.HistoryScreen
-import com.example.animemoi_app.screen.HomeeScreen
+import com.example.animemoi_app.screen.HomeScreen
 import com.example.animemoi_app.screen.SearchScreen
 import com.example.animemoi_app.screen.SettingScreen
 
 
 @Composable
 fun AppNavigation() {
-    val navController : NavHostController = rememberNavController()
-    Scaffold (
-        bottomBar = {
-            NavigationBar (
-                containerColor = Color.Black,
-                modifier = Modifier
-                    .graphicsLayer {
-                        shape = RoundedCornerShape(
-                            topEnd = 10.dp,
-                            topStart = 10.dp
-                        )
-                        clip = true
-                    }
-            ){
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
-                listOfNavItem.forEach{navItem ->
-                    NavigationBarItem(
-                            selected = currentDestination?.hierarchy?.any{it.route == navItem.route} == true,
-                            onClick = {
-                                      navController.navigate(navItem.route){
-                                          popUpTo(navController.graph.findStartDestination().id){
-                                              saveState = true
-                                          }
-                                          launchSingleTop = true
-                                          restoreState = true
+    val navController: NavHostController = rememberNavController()
+    Scaffold(bottomBar = {
+        NavigationBar(containerColor = Color.Black, modifier = Modifier.graphicsLayer {
+                shape = RoundedCornerShape(
+                    topEnd = 10.dp, topStart = 10.dp
+                )
+                clip = true
+            }) {
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentDestination = navBackStackEntry?.destination
+            listOfNavItem.forEach { navItem ->
+                NavigationBarItem(selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
+                    onClick = {
+                        navController.navigate(navItem.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
 
-                                      }
-                            },
-                            icon = {
-                                Icon(
-                                    imageVector = navItem.icon,
-                                    contentDescription = null,
-                                     modifier = Modifier
-                                        .padding(2.dp)
-                                         .size(30.dp)// Thêm padding cho biểu tượng
+                        }
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = navItem.icon,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(2.dp)
+                                .size(30.dp)// Thêm padding cho biểu tượng
 
-                                )},
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color(0xFFFF6666),
-                            unselectedIconColor = Color.White,
-                            indicatorColor = Color.Transparent
                         )
-                        )
-                }
+                    },
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = Color(0xFFFF6666),
+                        unselectedIconColor = Color.White,
+                        indicatorColor = Color.Transparent
+                    )
+                )
             }
         }
-    ){paddingValues : PaddingValues ->
+    }) { paddingValues: PaddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.HomeeScreen.name,
-            modifier = Modifier
-                .padding(paddingValues)
-            ){
-            composable(route = Screens.HomeeScreen.name){
-                HomeeScreen()
+            startDestination = Screens.HomeScreen.name,
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            composable(route = Screens.HomeScreen.name) {
+                HomeScreen()
             }
-            composable(route = Screens.SearchScreen.name){
+            composable(route = Screens.SearchScreen.name) {
                 SearchScreen()
             }
-            composable(route = Screens.HistoryScreen.name){
+            composable(route = Screens.HistoryScreen.name) {
                 HistoryScreen()
             }
-            composable(route = Screens.SettingScreen.name){
+            composable(route = Screens.SettingScreen.name) {
                 SettingScreen()
             }
-            composable(route = Screens.CategoryScreen.name){
+            composable(route = Screens.CategoryScreen.name) {
                 CategoryScreen()
             }
         }
