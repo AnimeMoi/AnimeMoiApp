@@ -32,6 +32,7 @@ import com.example.animemoi_app.screen.SettingScreen
 @Composable
 fun AppNavigation() {
     val navController : NavHostController = rememberNavController()
+
     Scaffold (
         bottomBar = {
             NavigationBar (
@@ -89,7 +90,7 @@ fun AppNavigation() {
                 HomeeScreen()
             }
             composable(route = Screens.SearchScreen.name){
-                SearchScreen()
+                SearchScreen(navController)
             }
             composable(route = Screens.HistoryScreen.name){
                 HistoryScreen()
@@ -103,5 +104,7 @@ fun AppNavigation() {
         }
     }
 }
+
+
 
 
