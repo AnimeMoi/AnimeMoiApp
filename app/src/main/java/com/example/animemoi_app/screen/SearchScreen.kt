@@ -1,13 +1,11 @@
 package com.example.animemoi_app.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,13 +16,16 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -36,7 +37,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,7 +47,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.common.ComeBack
 import com.example.animemoi_app.common.ListSourceComic
 import com.example.animemoi_app.common.searchBar
-import java.util.Locale.Category
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -92,7 +91,49 @@ fun SearchScreen(navController: NavHostController) {
                 "Thể loại"
             )
         )
+        AuthorSearch()
     }
+}
+
+@Composable
+fun AuthorSearch(){
+    var authorQuery by remember { mutableStateOf("") }
+    Row (
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .padding(16.dp)
+    ) {
+      Text(
+          text = "Tác giả: ",
+          fontSize = 14.sp,
+          color = Color.White,
+          fontWeight = FontWeight.Medium,
+      )
+      TextField(
+          shape = CircleShape,
+          value = authorQuery,
+          onValueChange = { query -> authorQuery = query },
+          modifier = Modifier
+              .fillMaxWidth(),
+          colors = TextFieldDefaults.colors(
+              cursorColor = Color.White,
+              unfocusedContainerColor = Color.Black,
+              focusedContainerColor = Color.Black,
+              focusedTextColor = Color.White,
+              unfocusedTextColor = Color.White,
+              focusedIndicatorColor = Color(0xFFFF6666),
+          ),
+          trailingIcon = {
+              if(authorQuery != ""){
+                  Icon(
+                      Icons.Default.Close,
+                      contentDescription = "Clear",
+                      tint = Color(0xFFFF6666),
+                      modifier = Modifier.clickable { authorQuery = ""})
+              }
+          },
+      )
+  }
 }
 
 @Composable
