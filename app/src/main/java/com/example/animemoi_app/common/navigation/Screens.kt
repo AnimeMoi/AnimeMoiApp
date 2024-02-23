@@ -5,5 +5,6 @@ enum class Screens {
     HistoryScreen,
     SearchScreen,
     SettingScreen,
-    CategoryScreen
+    CategoryScreen,
+    NotificationScreen
 }
