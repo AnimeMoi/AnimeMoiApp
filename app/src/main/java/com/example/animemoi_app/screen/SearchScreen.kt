@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.common.ComeBack
 import com.example.animemoi_app.common.ListSourceComic
 import com.example.animemoi_app.common.searchBar
@@ -88,52 +89,112 @@ fun SearchScreen(navController: NavHostController) {
                 "Thể loại",
                 "Thể loại",
                 "Thể loại",
+                "Thể loại",
+                "Thể loại",
                 "Thể loại"
             )
         )
         AuthorSearch()
+        StatusComic(listOf("Tạm dừng", "Đang cập nhật", "Đã hoàn thành"))
+        ButtonCommon(
+            text = "Tìm kiếm",
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp))
+    }
+}
+
+
+@Composable
+fun StatusComic(listStatus: List<String>) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(16.dp)
+    ) {
+        Text(
+            text = "Tình trạng:",
+            color = Color.White,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Medium
+        )
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(8.dp, 0.dp)
+        ) {
+            items(listStatus) { status ->
+                Status(status)
+            }
+        }
     }
 }
 
 @Composable
-fun AuthorSearch(){
+fun Status(status: String) {
+    var clickChoose by remember { mutableStateOf(false) }
+    Surface(
+        modifier = Modifier.clickable {clickChoose = !clickChoose},
+        shape = CircleShape,
+        content = {
+            Box(
+                modifier = Modifier
+                    .background(
+                        if(clickChoose) Color(0xFFFF6666) else Color(0xFF999999)
+                    )
+            ) {
+                Text(
+                    text = status,
+                    fontWeight = FontWeight.Normal,
+                    color = if(clickChoose) Color.White else Color.Black,
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .padding(8.dp, 4.dp)
+                    )
+            }
+        }
+    )
+}
+
+@Composable
+fun AuthorSearch() {
     var authorQuery by remember { mutableStateOf("") }
-    Row (
+    Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .padding(16.dp)
     ) {
-      Text(
-          text = "Tác giả: ",
-          fontSize = 14.sp,
-          color = Color.White,
-          fontWeight = FontWeight.Medium,
-      )
-      TextField(
-          shape = CircleShape,
-          value = authorQuery,
-          onValueChange = { query -> authorQuery = query },
-          modifier = Modifier
-              .fillMaxWidth(),
-          colors = TextFieldDefaults.colors(
-              cursorColor = Color.White,
-              unfocusedContainerColor = Color.Black,
-              focusedContainerColor = Color.Black,
-              focusedTextColor = Color.White,
-              unfocusedTextColor = Color.White,
-              focusedIndicatorColor = Color(0xFFFF6666),
-          ),
-          trailingIcon = {
-              if(authorQuery != ""){
-                  Icon(
-                      Icons.Default.Close,
-                      contentDescription = "Clear",
-                      tint = Color(0xFFFF6666),
-                      modifier = Modifier.clickable { authorQuery = ""})
-              }
-          },
-      )
-  }
+        Text(
+            text = "Tác giả: ",
+            fontSize = 14.sp,
+            color = Color.White,
+            fontWeight = FontWeight.Medium,
+        )
+        TextField(
+            shape = CircleShape,
+            value = authorQuery,
+            onValueChange = { query -> authorQuery = query },
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = TextFieldDefaults.colors(
+                cursorColor = Color.White,
+                unfocusedContainerColor = Color.Black,
+                focusedContainerColor = Color.Black,
+                focusedTextColor = Color.White,
+                unfocusedTextColor = Color.White,
+                focusedIndicatorColor = Color(0xFFFF6666),
+            ),
+            trailingIcon = {
+                if (authorQuery != "") {
+                    Icon(
+                        Icons.Default.Close,
+                        contentDescription = "Clear",
+                        tint = Color(0xFFFF6666),
+                        modifier = Modifier.clickable { authorQuery = "" })
+                }
+            },
+        )
+    }
 }
 
 @Composable
@@ -177,7 +238,8 @@ fun Category(category: String) {
                 fontSize = 12.sp,
                 color = when (clickCount) {
                     1, 2 -> Color.White
-                    else -> Color.Black},
+                    else -> Color.Black
+                },
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .background(
