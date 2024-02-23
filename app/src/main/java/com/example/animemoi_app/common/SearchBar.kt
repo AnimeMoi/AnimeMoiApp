@@ -1,10 +1,12 @@
 package com.example.animemoi_app.common
 
 import android.widget.Toast
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Refresh
@@ -48,7 +50,8 @@ fun searchBar() {
         SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = if (isActive) 0.dp else 8.dp),
+                .padding(horizontal = if (isActive) 0.dp else 8.dp)
+                .border(1.dp, Color(0xFF808080), CircleShape),
             query = queryString,
             onQueryChange = { newQueryString ->
                 queryString = newQueryString
