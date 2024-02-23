@@ -60,7 +60,6 @@ fun AppNavigation() {
                             modifier = Modifier
                                 .padding(2.dp)
                                 .size(30.dp)// Thêm padding cho biểu tượng
-
                         )
                     },
                     colors = NavigationBarItemDefaults.colors(
@@ -81,7 +80,7 @@ fun AppNavigation() {
                 HomeScreen()
             }
             composable(route = Screens.SearchScreen.name) {
-                SearchScreen()
+                SearchScreen(navController)
             }
             composable(route = Screens.HistoryScreen.name) {
                 HistoryScreen()
