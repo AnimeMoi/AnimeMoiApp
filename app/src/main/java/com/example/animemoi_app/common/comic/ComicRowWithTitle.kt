@@ -1,5 +1,6 @@
 package com.example.animemoi_app.common.comic
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
@@ -27,6 +28,7 @@ fun ComicRowWithTitle(title: String, modifier: Modifier = Modifier) {
                 contentDescription = null,
                 modifier = modifier
                     .padding(start = 0.dp, top = 8.dp, end = 16.dp, bottom = 8.dp)
+                    .clickable {}
             )
         }
         ComicRow()

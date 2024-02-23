@@ -22,11 +22,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.animemoi_app.screen.CategoryScreen
-import com.example.animemoi_app.screen.HistoryScreen
-import com.example.animemoi_app.screen.HomeScreen
-import com.example.animemoi_app.screen.SearchScreen
-import com.example.animemoi_app.screen.SettingScreen
+import com.example.animemoi_app.screen.*
 
 
 @Composable
@@ -50,7 +46,6 @@ fun AppNavigation() {
                             }
                             launchSingleTop = true
                             restoreState = true
-
                         }
                     },
                     icon = {
@@ -77,7 +72,7 @@ fun AppNavigation() {
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(route = Screens.HomeScreen.name) {
-                HomeScreen()
+                HomeScreen(navController)
             }
             composable(route = Screens.SearchScreen.name) {
                 SearchScreen(navController)
@@ -90,6 +85,9 @@ fun AppNavigation() {
             }
             composable(route = Screens.CategoryScreen.name) {
                 CategoryScreen()
+            }
+            composable(route = Screens.NotificationScreen.name) {
+                NotificationScreen(navController)
             }
         }
     }

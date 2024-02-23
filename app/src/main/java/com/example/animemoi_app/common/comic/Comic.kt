@@ -30,7 +30,9 @@ fun Comic(
     views: Int = 0,
     follow: Int = 0
 ) {
-    Column {
+    Column (
+        modifier = Modifier.fillMaxWidth()
+    ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current).data(imageUrl).crossfade(true)
                 .build(),
