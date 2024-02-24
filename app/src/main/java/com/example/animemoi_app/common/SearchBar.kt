@@ -1,11 +1,17 @@
 package com.example.animemoi_app.common
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -50,15 +56,17 @@ fun searchBar() {
         SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = if (isActive) 0.dp else 8.dp)
-                .border(1.dp, Color(0xFF808080), CircleShape),
+                .padding(1.dp)
+                .background(Color.Black)
+                .border(0.5.dp, if(isActive) Color.Transparent else Color.White, RoundedCornerShape(50))
+                ,
             query = queryString,
             onQueryChange = { newQueryString ->
                 queryString = newQueryString
             },
             onSearch = {
                 isActive = false
-                Toast.makeText(contextForToast, "Your query string: $queryString", Toast.LENGTH_SHORT)
+                Toast.makeText(contextForToast, "Bạn đã tìm: $queryString", Toast.LENGTH_SHORT)
                     .show()
                 historyItems.add(queryString)
 
@@ -91,6 +99,8 @@ fun searchBar() {
             colors = SearchBarDefaults.colors(
                 Color.Black, Color(0xFFFF6666), TextFieldDefaults.colors(Color.White)
             ),
+            tonalElevation = 500.dp
+            ,
             content = {
                     //this is a column scope
                     //all the items are displayed vertically

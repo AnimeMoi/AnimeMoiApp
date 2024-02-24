@@ -1,9 +1,9 @@
 package com.example.animemoi_app.model
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 
-class Comic(
-    id: Int,
-    name: String,
-    star: Float,
-    views: Int,
-    follow: Int
+data class Comic(
+    @StringRes val stringResourceId: Int,
+    @DrawableRes val imageResourceId: Int,
+    @StringRes val categoryResourceId: Int
 )

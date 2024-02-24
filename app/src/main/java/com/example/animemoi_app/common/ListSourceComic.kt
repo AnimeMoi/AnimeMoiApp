@@ -35,7 +35,8 @@ fun ListSourceComic(sources: List<String>) {
     ) {
         items(sources) { item ->
             Source(
-                source = item, isSelect = selectedSourceIndex == sources.indexOf(item)
+                source = item,
+                isSelect = selectedSourceIndex == sources.indexOf(item)
             ) {
                 selectedSourceIndex = sources.indexOf(item)
             }

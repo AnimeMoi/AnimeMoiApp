@@ -27,7 +27,7 @@ fun ButtonCommon(
     contentColor: Color = Color.White,
     backgroundColor: Color = Color(0xFFFF6666),
     iconButton: ImageVector? = null,
-    ) {
+) {
     Button(
         onClick = onClick,
         modifier = modifier
