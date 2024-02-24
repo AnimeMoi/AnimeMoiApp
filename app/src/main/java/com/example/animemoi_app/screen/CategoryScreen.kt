@@ -21,38 +21,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.animemoi_app.common.Bar
 import com.example.animemoi_app.common.ButtonCommon
-import com.example.animemoi_app.common.CategoryCard.CardsComic
 import com.example.animemoi_app.common.CategoryCard.GridComic
 import com.example.animemoi_app.common.ListSourceComic
 import com.example.animemoi_app.common.searchBar
-
-/*@Composable
-fun ImageCard(
-    comiccard: ComicCard,
-    modifier: Modifier = Modifier
-    ){
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(15.dp),
-        elevation = CardDefaults.cardElevation(5.dp)
-    ){
-        Box(modifier = Modifier.height(200.dp)) {
-            Image(
-                painter = painterResource(id = comiccard.imageResourceId),
-                contentDescription = null,
-                contentScale = ContentScale.Crop
-            )
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(12.dp),
-                contentAlignment = Alignment.BottomStart
-                ){
-                    Text(text = stringResource(id = comiccard.stringResourceId), style = TextStyle(color = Color.White, fontSize = 16.sp))
-            }
-        }
-    }
-}*/
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoryScreen(){
@@ -88,11 +59,10 @@ fun CategoryScreen(){
             }
         }
         Box(modifier = Modifier
-            .padding(top = 5.dp)){
+            .padding(top = 5.dp, bottom = 25.dp)){
             ListSourceComic(sources = sources)
         }
-        Box(modifier = Modifier
-            .padding(25.dp,15.dp)){
+        Box(){
             GridComic()
         }
     }
