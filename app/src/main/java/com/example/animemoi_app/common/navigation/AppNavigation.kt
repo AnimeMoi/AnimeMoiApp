@@ -32,6 +32,7 @@ import com.example.animemoi_app.screen.HistoryScreen
 import com.example.animemoi_app.screen.HomeeScreen
 import com.example.animemoi_app.screen.SearchScreen
 import com.example.animemoi_app.screen.SettingScreen
+import com.example.animemoi_app.screen.*
 
 
 @Composable
@@ -85,27 +86,29 @@ fun AppNavigation() {
                 }
             }
         }
-    ){paddingValues : PaddingValues ->
+    }) { paddingValues: PaddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.HomeeScreen.name,
-            modifier = Modifier
-                .padding(paddingValues)
-            ){
-            composable(route = Screens.HomeeScreen.name){
-                HomeeScreen()
+            startDestination = Screens.HomeScreen.name,
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            composable(route = Screens.HomeScreen.name) {
+                HomeScreen(navController)
             }
-            composable(route = Screens.SearchScreen.name){
-                SearchScreen()
+            composable(route = Screens.SearchScreen.name) {
+                SearchScreen(navController)
             }
-            composable(route = Screens.HistoryScreen.name){
+            composable(route = Screens.HistoryScreen.name) {
                 HistoryScreen()
             }
-            composable(route = Screens.SettingScreen.name){
+            composable(route = Screens.SettingScreen.name) {
                 SettingScreen()
             }
-            composable(route = Screens.CategoryScreen.name){
+            composable(route = Screens.CategoryScreen.name) {
                 CategoryScreen()
+            }
+            composable(route = Screens.NotificationScreen.name) {
+                NotificationScreen(navController)
             }
         }
     }
@@ -114,5 +117,7 @@ fun AppNavigation() {
 fun AppNavigationPreview() {
     AppNavigation()
 }
+
+
 
 

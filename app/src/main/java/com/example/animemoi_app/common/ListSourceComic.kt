@@ -66,8 +66,7 @@ fun Source(source: String, isSelect: Boolean, onClick: () -> Unit) {
             color = if (isSelect) Color(0xFFFF6666) else Color.White,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }
@@ -75,7 +74,7 @@ fun Source(source: String, isSelect: Boolean, onClick: () -> Unit) {
 @Preview
 @Composable
 fun PreviewListSourceComic() {
-    val sources = listOf("Nettruyen", "BaoTangTruyen", "Yurineko")
+    val sources = listOf("NetTruyen", "BaoTangTruyen", "Yurineko")
     ListSourceComic(sources)
 }
 
