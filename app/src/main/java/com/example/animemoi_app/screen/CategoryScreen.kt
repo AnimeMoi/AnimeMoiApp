@@ -33,7 +33,6 @@ fun CategoryScreen(){
             .background(Color.Black)
     ){
         val sources = listOf("Nettruyen", "BaoTangTruyen", "Yurineko" ,"Yurisneko")
-        Bar()
         Box(modifier = Modifier.padding(top = 10.dp)){
             searchBar()
         }
