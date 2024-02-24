@@ -1,4 +1,4 @@
-package com.example.animemoi_app.common.CategoryCard
+package com.example.animemoi_app.common.category_card
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
