@@ -1,4 +1,5 @@
 package com.example.animemoi_app.model
+
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
@@ -7,5 +8,6 @@ data class Comic(
     @DrawableRes val imageResourceId: Int,
     @StringRes val categoryResourceId: Int,
     @StringRes val status: Int,
-    @StringRes val lastChapter: Int
+    val lastChapter: String,
+    val timeUpdate: String?
 )

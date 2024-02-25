@@ -18,11 +18,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.animemoi_app.R
 import com.example.animemoi_app.model.Comic
 
 @Composable
 fun HistoryCard(
-    comic: Comic
+    comic: Comic, showStatus: Boolean, showLastTimeUpdate: Boolean
 ) {
     Card(
         modifier = Modifier
@@ -58,19 +59,30 @@ fun HistoryCard(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = stringResource(id = comic.status),
+                    text = stringResource(R.string.chapter) + " " + comic.lastChapter,
                     color = Color.White,
                     fontWeight = FontWeight.Light,
                     fontFamily = FontFamily.Monospace,
                     fontSize = 13.sp
                 )
-                Text(
-                    text = "Tình trạng: " + stringResource(id = comic.status),
-                    color = Color.White,
-                    fontWeight = FontWeight.Light,
-                    fontFamily = FontFamily.Monospace,
-                    fontSize = 13.sp
-                )
+                if (showStatus) {
+                    Text(
+                        text = stringResource(R.string.status) + ": " + stringResource(id = comic.status),
+                        color = Color.White,
+                        fontWeight = FontWeight.Light,
+                        fontFamily = FontFamily.Monospace,
+                        fontSize = 13.sp
+                    )
+                }
+                if (showLastTimeUpdate) {
+                    Text(
+                        text = stringResource(R.string.update) + ": " + comic.timeUpdate,
+                        color = Color.White,
+                        fontWeight = FontWeight.Light,
+                        fontFamily = FontFamily.Monospace,
+                        fontSize = 13.sp
+                    )
+                }
             }
         }
     }

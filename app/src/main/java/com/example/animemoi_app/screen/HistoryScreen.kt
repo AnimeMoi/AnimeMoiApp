@@ -45,6 +45,6 @@ fun HistoryScreen(navController: NavHostController) {
                 Text(text = "Xoá tất cả", color = Color(0xFFFF6666))
             }
         }
-        GridHistoryCard()
+        GridHistoryCard(showStatus = true, showLastTimeUpdate = false)
     }
 }

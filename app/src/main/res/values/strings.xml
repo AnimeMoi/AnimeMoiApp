@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">AnimeMoi</string>
+
+    <string name="chapter">Chương</string>
+    <string name="status">Tình trạng</string>
+    <string name="update">Cập nhật</string>
+
     <string name="cm01">HƯỚNG DẪN CHĂM SÓC TIỂU ZOMBIE</string>
     <string name="cm02">Thần Đạo Đan Tôn</string>
     <string name="cm03">Linh Vũ Thiên Hạ</string>

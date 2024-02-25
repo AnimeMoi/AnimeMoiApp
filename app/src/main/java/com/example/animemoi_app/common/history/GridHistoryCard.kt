@@ -12,16 +12,17 @@ import androidx.compose.ui.unit.dp
 import com.example.animemoi_app.data.ComicData
 
 @Composable
-fun GridHistoryCard() {
+fun GridHistoryCard(showStatus: Boolean, showLastTimeUpdate: Boolean) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(1),
-        verticalArrangement = Arrangement.spacedBy(20.dp),
+        columns = GridCells.Fixed(1), verticalArrangement = Arrangement.spacedBy(20.dp),
         //horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.padding(horizontal = 20.dp)
     ) {
         val comics = ComicData().loadComicCard()
         items(comics) { comic ->
-            HistoryCard(comic)
+            HistoryCard(
+                comic, showStatus, showLastTimeUpdate
+            )
         }
     }
 }
@@ -29,5 +30,5 @@ fun GridHistoryCard() {
 @Preview
 @Composable
 fun HistoryCardPreview() {
-    GridHistoryCard()
+    GridHistoryCard(showStatus = true, showLastTimeUpdate = false)
 }
