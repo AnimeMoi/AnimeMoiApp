@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.animemoi_app.common.Bar
 import com.example.animemoi_app.common.ButtonCommon
-import com.example.animemoi_app.common.CategoryCard.GridComic
+import com.example.animemoi_app.common.category_card.GridComic
 import com.example.animemoi_app.common.ListSourceComic
 import com.example.animemoi_app.common.searchBar
 @OptIn(ExperimentalMaterial3Api::class)
