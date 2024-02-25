@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Logout
@@ -40,9 +39,9 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -71,54 +70,70 @@ fun SettingScreen(navController: NavHostController) {
 
 @Composable
 fun EditDialog(userName: String) {
-    var user = userName
+    var user by remember { mutableStateOf(userName) }
+    var newPassword by remember { mutableStateOf("") }
+    var newPassword2 by remember { mutableStateOf("") }
+    var showPass1 by remember { mutableStateOf(false) }
+    var showPass2 by remember { mutableStateOf(false) }
+
     AlertDialog(
         containerColor = Color(0xFFCCCCCC),
         onDismissRequest = { },
         title = {
             Text(
                 "Cập nhật thông tin",
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
             )
         },
         text = {
             Column {
                 TextField(
                     value = user,
-                    onValueChange = { user = it },
+                    onValueChange = { name -> user = name },
                     label = { Text("Biệt danh") },
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color(0xFFd9d9d9),
-                        focusedContainerColor = Color(0xFF4D4D4D),
+                        focusedContainerColor = Color(0xFFd9d9d9),
+                        focusedIndicatorColor = Color(0xFFFF9999)
                     )
                 )
                 TextField(
-                    value = user,
-                    onValueChange = { user = it },
+                    value = newPassword,
+                    onValueChange = { password -> newPassword = password },
                     label = { Text("Mật khẩu mới") },
-                    visualTransformation = PasswordVisualTransformation(),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    visualTransformation =  if(showPass1) VisualTransformation.None else PasswordVisualTransformation(),
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color(0xFFd9d9d9),
-                        focusedContainerColor = Color(0xFF4D4D4D),
+                        focusedContainerColor = Color(0xFFd9d9d9),
+                        focusedIndicatorColor = Color(0xFFFF9999)
                     ),
                     trailingIcon = {
-                        if(user != "")
-                            Icon(Icons.Outlined.VisibilityOff, contentDescription = "")
+                        if (newPassword != "")
+                            Icon(
+                                Icons.Outlined.VisibilityOff,
+                                contentDescription = "",
+                                modifier = Modifier.clickable { showPass1 = !showPass1 }
+                            )
                     }
                 )
                 TextField(
-                    value = userName,
-                    onValueChange = { user = it },
+                    value = newPassword2,
+                    onValueChange = { password -> newPassword2 = password },
                     label = { Text("Nhập lại mật khẩu mới") },
-                    visualTransformation = PasswordVisualTransformation(),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    visualTransformation = if(showPass2) VisualTransformation.None else PasswordVisualTransformation(),
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color(0xFFd9d9d9),
-                        focusedContainerColor = Color(0xFF4D4D4D),
+                        focusedContainerColor = Color(0xFFd9d9d9),
+                        focusedIndicatorColor = Color(0xFFFF9999)
                     ),
                     trailingIcon = {
-                        if(user != "")
-                            Icon(Icons.Outlined.VisibilityOff, contentDescription = "")
+                        if (newPassword2 != "")
+                            Icon(
+                                Icons.Outlined.VisibilityOff,
+                                contentDescription = "",
+                                modifier = Modifier.clickable { showPass2 = !showPass2 }
+                            )
                     }
                 )
             }
@@ -127,7 +142,7 @@ fun EditDialog(userName: String) {
             Button(
                 onClick = { },
                 colors = ButtonDefaults.buttonColors(Color(0xFFFF6666))
-                ) {
+            ) {
                 Text("Đồng ý")
             }
         },
@@ -145,6 +160,7 @@ fun EditDialog(userName: String) {
 @Composable
 fun PersonalInformation(user: UserData) {
     var showPassword by remember { mutableStateOf(false) }
+    var isEditing by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -160,7 +176,7 @@ fun PersonalInformation(user: UserData) {
                 .size(20.dp)
                 .align(Alignment.End)
                 .border(1.dp, Color(0xffff6666), RoundedCornerShape(5.dp))
-                .clickable { },
+                .clickable { isEditing = !isEditing },
             tint = Color(0xFFFF6666)
         )
         Row(
@@ -266,6 +282,9 @@ fun PersonalInformation(user: UserData) {
                 )
             }
         }
+    }
+    if (isEditing) {
+        EditDialog(userName = "Tuấn Kha")
     }
 }
 
