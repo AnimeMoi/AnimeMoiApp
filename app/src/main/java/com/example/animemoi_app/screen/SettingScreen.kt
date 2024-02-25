@@ -1,37 +1,201 @@
 package com.example.animemoi_app.screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.outlined.Visibility
+import androidx.compose.material.icons.outlined.VisibilityOff
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.animemoi_app.R
+import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.common.ComeBack
 
 @Composable
 fun SettingScreen(navController: NavHostController) {
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
     ) {
         ComeBack(title = "Cài đặt", navController)
-        Column(
+        PersonalInformation(
+            user = UserData(
+                image = painterResource(id = R.drawable.deba),
+                name = "Tuấn Kha",
+                password = "TuanKha"
+            )
+        )
+    }
+}
+
+@Composable
+fun PersonalInformation(user: UserData) {
+    var showPassword by remember { mutableStateOf(false) }
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+            .background(Color(0xFF4D4D4D), RoundedCornerShape(10.dp))
+
+    ) {
+        Icon(
+            Icons.Default.Edit,
+            contentDescription = "",
             modifier = Modifier
-                .padding(16.dp)
+                .padding(0.dp, 16.dp, 16.dp, 0.dp)
+                .size(20.dp)
+                .align(Alignment.End)
+                .border(1.dp, Color(0xffff6666), RoundedCornerShape(5.dp))
+                .clickable { },
+            tint = Color(0xFFFF6666)
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(0.3f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = user.image,
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .height(72.dp)
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .padding(8.dp, 0.dp, 16.dp, 0.dp)
+                    .fillMaxWidth()
+            ) {
+                Row {
+                    Column {
+                        Text(
+                            text = "Biệt danh: ",
+                            color = Color.White
+                        )
+                        Text(
+                            text = "Mật khẩu: ",
+                            color = Color.White,
+                            modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)
+                        )
+                    }
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth(0.9f),
+                    ) {
+                        Text(
+                            text = user.name,
+                            color = Color.White
+                        )
+                        TextField(
+                            shape = RectangleShape,
+                            value = user.password,
+                            onValueChange = {},
+                            readOnly = true,
+                            enabled = false,
+                            colors = TextFieldDefaults.colors(
+                                disabledContainerColor = Color(0xFF4D4D4D),
+                                disabledTextColor = Color.White,
+                                disabledIndicatorColor = Color.Transparent
+                            ),
+                            visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+                        )
+                    }
+                    Column(
+                        verticalArrangement = Arrangement.Bottom,
+                    ) {
+                        Text(text = "")
+                        Icon(
+                            if (showPassword) Icons.Outlined.Visibility else Icons.Outlined.VisibilityOff,
+                            contentDescription = "",
+                            modifier = Modifier
+                                .padding(0.dp, 16.dp, 0.dp, 0.dp)
+                                .clickable {
+                                    showPassword = !showPassword
+                                },
+                            tint = Color(0xFFFF6666)
+
+                        )
+                    }
+                }
+            }
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp, 16.dp, 8.dp, 8.dp)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(0.5f),
+                horizontalAlignment = Alignment.Start
+            ) {
+                ButtonCommon(
+                    text = "Xóa tài khoản",
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                )
+            }
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.End
+            ) {
+                ButtonCommon(
+                    text = "Đăng xuất",
+                    onClick = { /*TODO*/ },
+                    iconButton = Icons.Default.Logout
+                )
+            }
         }
     }
 }
 
-@Preview (showBackground = true)
+
+@Preview(showBackground = true)
 @Composable
-fun SettingScreenPreview(){
+fun SettingScreenPreview() {
     SettingScreen(rememberNavController())
 }
+
+data class UserData(val image: Painter, val name: String, val password: String)

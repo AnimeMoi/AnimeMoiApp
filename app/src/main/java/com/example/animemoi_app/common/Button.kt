@@ -2,6 +2,7 @@ package com.example.animemoi_app.common
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -45,7 +46,8 @@ fun ButtonCommon(
             Icon(
                 imageVector = iconButton,
                 contentDescription = "",
-                Modifier.size(20.dp)
+                Modifier.size(24.dp)
+                    .padding(8.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     }
