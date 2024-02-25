@@ -16,9 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.R
 import com.example.animemoi_app.common.Bar
 import com.example.animemoi_app.common.ComeBack
+import com.example.animemoi_app.common.history.GridHistoryCard
 
 @Composable
 fun NotificationScreen(navController: NavHostController) {
@@ -37,26 +39,25 @@ fun NotificationScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.Center,
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.bell),
-                contentDescription = null,
-                Modifier.size(60.dp)
+                painter = painterResource(id = R.drawable.bell), contentDescription = null, Modifier.size(60.dp)
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                "Bạn cần đăng nhập để nhận thông báo",
-                fontSize = 18.0.sp
+                "Bạn cần đăng nhập để nhận thông báo", fontSize = 18.0.sp
             )
         }
     } else {
-        if (systemNotification) {
-            Column(Modifier.padding(start = 12.dp, top = 48.dp, end = 0.dp, bottom = 0.dp)) {
-                Text(systemNotificationContent)
-                Text(
-                    systemNotificationTimeUpdate,
-                    fontStyle = FontStyle.Italic,
-                    fontWeight = FontWeight.Light
-                )
+        Column {
+            if (systemNotification) {
+                Column(Modifier.padding(start = 12.dp, top = 48.dp, end = 0.dp, bottom = 0.dp)) {
+                    Text(systemNotificationContent)
+                    Text(
+                        systemNotificationTimeUpdate, fontStyle = FontStyle.Italic, fontWeight = FontWeight.Light
+                    )
+                }
             }
+            Spacer(modifier = Modifier.height(8.dp))
+            GridHistoryCard()
         }
     }
 }
@@ -64,5 +65,6 @@ fun NotificationScreen(navController: NavHostController) {
 @Preview
 @Composable
 fun NotificationScreenPreview() {
-
+    val navController: NavHostController = rememberNavController()
+    NotificationScreen(navController)
 }

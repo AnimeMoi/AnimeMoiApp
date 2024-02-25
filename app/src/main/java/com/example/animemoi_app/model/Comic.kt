@@ -6,6 +6,6 @@ data class Comic(
     @StringRes val stringResourceId: Int,
     @DrawableRes val imageResourceId: Int,
     @StringRes val categoryResourceId: Int,
-    @StringRes val statusComic: Int,
-    @StringRes val statusChapter: Int
+    @StringRes val status: Int,
+    @StringRes val lastChapter: Int
 )
