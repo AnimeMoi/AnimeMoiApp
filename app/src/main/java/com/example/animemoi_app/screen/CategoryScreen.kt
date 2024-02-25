@@ -25,25 +25,26 @@ import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.common.category_card.GridComic
 import com.example.animemoi_app.common.ListSourceComic
 import com.example.animemoi_app.common.searchBar
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CategoryScreen(navController: NavHostController){
-    Column (
+fun CategoryScreen(navController: NavHostController) {
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-    ){
-        val sources = listOf("Nettruyen", "BaoTangTruyen", "Yurineko" ,"Yurisneko")
+    ) {
+        val sources = listOf("Nettruyen", "BaoTangTruyen", "Yurineko", "Yurisneko")
         Bar(navController)
-        Box(modifier = Modifier.padding(top = 10.dp)){
+        Box(modifier = Modifier.padding(top = 10.dp)) {
             searchBar()
         }
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-        ){
+        ) {
             ButtonCommon(
                 modifier = Modifier.padding(start = 16.dp),
                 backgroundColor = Color(0xFF33CC00),
@@ -51,19 +52,23 @@ fun CategoryScreen(navController: NavHostController){
                 onClick = {},
                 text = "Bộ sưu tập"
             )
-            Button(onClick = { /*TODO*/ },
+            Button(
+                onClick = { /*TODO*/ },
                 colors = ButtonDefaults.buttonColors(Color.Transparent)
             ) {
                 Icon(
                     imageVector = Icons.Default.MoreHoriz,
-                    contentDescription = "Xem thêm")
+                    contentDescription = "Xem thêm"
+                )
             }
         }
-        Box(modifier = Modifier
-            .padding(top = 5.dp, bottom = 25.dp)){
+        Box(
+            modifier = Modifier
+                .padding(top = 5.dp, bottom = 25.dp)
+        ) {
             ListSourceComic(sources = sources)
         }
-        Box(){
+        Box {
             GridComic()
         }
     }

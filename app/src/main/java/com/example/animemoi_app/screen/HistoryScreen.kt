@@ -19,23 +19,24 @@ import com.example.animemoi_app.common.Bar
 import com.example.animemoi_app.common.history.GridHistoryCard
 
 @Composable
-fun HistoryScreen(navController: NavHostController){
-    Column (
+fun HistoryScreen(navController: NavHostController) {
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-    ){
+    ) {
         Bar(navController = navController)
-        Row (
-            modifier = Modifier.padding(top = 15.dp).fillMaxWidth(),
+        Row(
+            modifier = Modifier
+                .padding(top = 15.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-
-        ){
+        ) {
             Button(
                 onClick = { /*TODO*/ },
                 colors = ButtonDefaults.buttonColors(Color.Transparent)
             ) {
-             Text(text = "Hôm nay")
+                Text(text = "Hôm nay")
             }
             Button(
                 onClick = { /*TODO*/ },
@@ -43,7 +44,6 @@ fun HistoryScreen(navController: NavHostController){
             ) {
                 Text(text = "Xoá tất cả", color = Color(0xFFFF6666))
             }
-            
         }
         GridHistoryCard()
     }

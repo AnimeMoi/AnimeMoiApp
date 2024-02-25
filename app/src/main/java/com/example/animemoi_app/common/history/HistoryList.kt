@@ -30,11 +30,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.animemoi_app.data.ComicData
 import com.example.animemoi_app.model.Comic
+
 @Composable
 fun HistoryCard(
     comic: Comic
 ) {
-    Card (
+    Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp)
@@ -42,8 +43,8 @@ fun HistoryCard(
         elevation = CardDefaults.cardElevation(10.dp),
         colors = CardDefaults.cardColors(containerColor = Color.Transparent),
         shape = RoundedCornerShape(5.dp)
-    ){
-        Row{
+    ) {
+        Row {
             Image(
                 painter = painterResource(id = comic.imageResourceId),
                 contentDescription = null,
@@ -57,7 +58,7 @@ fun HistoryCard(
                     .padding(start = 5.dp)
                     .fillMaxHeight(),
                 verticalArrangement = Arrangement.spacedBy(20.dp)
-            ){
+            ) {
                 Text(
                     text = stringResource(id = comic.stringResourceId),
                     color = Color.White,
@@ -74,11 +75,13 @@ fun HistoryCard(
                     fontFamily = FontFamily.Monospace,
                     fontSize = 13.sp
                 )
-                Text(text = "Tình trạng: " + stringResource(id = comic.statusComic),
+                Text(
+                    text = "Tình trạng: " + stringResource(id = comic.statusComic),
                     color = Color.White,
                     fontWeight = FontWeight.Light,
                     fontFamily = FontFamily.Monospace,
-                    fontSize = 13.sp)
+                    fontSize = 13.sp
+                )
             }
         }
     }
@@ -98,6 +101,7 @@ fun GridHistoryCard() {
         }
     }
 }
+
 @Preview
 @Composable
 fun HistoryCardPreview() {
