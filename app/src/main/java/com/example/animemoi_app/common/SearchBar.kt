@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 
 @ExperimentalMaterial3Api
 @Composable
-fun searchBar() {
+fun SearchBar() {
     //This is the text users enter
     var queryString by remember {
         mutableStateOf("")
@@ -51,81 +51,74 @@ fun searchBar() {
     val contextForToast = LocalContext.current.applicationContext
     //previous search terms
     val historyItems = remember {
-        mutableStateListOf("SemicolonSpace","Jetpack Compose","Android")
+        mutableStateListOf("SemicolonSpace", "Jetpack Compose", "Android")
     }
-        SearchBar(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(1.dp)
-                .background(Color.Black)
-                .border(0.5.dp, if(isActive) Color.Transparent else Color.White, RoundedCornerShape(50))
-                ,
-            query = queryString,
-            onQueryChange = { newQueryString ->
-                queryString = newQueryString
-            },
-            onSearch = {
-                isActive = false
-                Toast.makeText(contextForToast, "Bạn đã tìm: $queryString", Toast.LENGTH_SHORT)
-                    .show()
-                historyItems.add(queryString)
+    SearchBar(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(1.dp)
+            .background(Color.Black)
+            .border(0.5.dp, if (isActive) Color.Transparent else Color.White, RoundedCornerShape(50)),
+        query = queryString,
+        onQueryChange = { newQueryString ->
+            queryString = newQueryString
+        },
+        onSearch = {
+            isActive = false
+            Toast.makeText(contextForToast, "Bạn đã tìm: $queryString", Toast.LENGTH_SHORT)
+                .show()
+            historyItems.add(queryString)
 
-            },
-            active = isActive,
-            onActiveChange = { activeChange ->
-                isActive = activeChange
-            },
-            placeholder = {
-                Text(text = "Tìm kiếm...", color = Color.White)
-            },
-            leadingIcon = {
-                Icon(imageVector = Icons.Default.Search, contentDescription = null, tint = Color.White)
-            },
-            trailingIcon = {
-                if (isActive) {
-                    Icon(
-                        modifier = Modifier.clickable {
-                            if (queryString.isNotEmpty()) {
-                                queryString = ""
-                            } else {
-                                isActive = false
-                            }
-                        },
-                        imageVector = Icons.Default.Close,
-                        contentDescription = "Close Icon"
-                    )
-                }
-            },
-            colors = SearchBarDefaults.colors(
-                Color.Black, Color(0xFFFF6666), TextFieldDefaults.colors(Color.White)
-            ),
-            tonalElevation = 500.dp
-            ,
-            content = {
-                    //this is a column scope
-                    //all the items are displayed vertically
-                    historyItems.forEach{ historyItem ->
-                        Row (modifier = Modifier.padding(all = 16.dp)){
-                            Icon(
-                                modifier = Modifier.padding(end = 12.dp),
-                                imageVector = Icons.Default.Refresh, contentDescription = null,
-                                tint = Color.White
-                            )
-                            Text(text = historyItem, color = Color.White)
+        },
+        active = isActive,
+        onActiveChange = { activeChange ->
+            isActive = activeChange
+        },
+        placeholder = {
+            Text(text = "Tìm kiếm...", color = Color.White)
+        },
+        leadingIcon = {
+            Icon(imageVector = Icons.Default.Search, contentDescription = null, tint = Color.White)
+        },
+        trailingIcon = {
+            if (isActive) {
+                Icon(
+                    modifier = Modifier.clickable {
+                        if (queryString.isNotEmpty()) {
+                            queryString = ""
+                        } else {
+                            isActive = false
                         }
-                    }
+                    },
+                    imageVector = Icons.Default.Close,
+                    contentDescription = "Close Icon"
+                )
             }
-
-        )
-       
-
-
-
+        },
+        colors = SearchBarDefaults.colors(
+            Color.Black, Color(0xFFFF6666), TextFieldDefaults.colors(Color.White)
+        ),
+        tonalElevation = 500.dp,
+        content = {
+            //this is a column scope
+            //all the items are displayed vertically
+            historyItems.forEach { historyItem ->
+                Row(modifier = Modifier.padding(all = 16.dp)) {
+                    Icon(
+                        modifier = Modifier.padding(end = 12.dp),
+                        imageVector = Icons.Default.Refresh, contentDescription = null,
+                        tint = Color.White
+                    )
+                    Text(text = historyItem, color = Color.White)
+                }
+            }
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun SearchBarPreview() {
-    searchBar()
+    SearchBar()
 }

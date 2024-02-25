@@ -47,7 +47,6 @@ fun AppNavigation() {
                         )
                         clip = true
                     }
-
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
@@ -61,7 +60,6 @@ fun AppNavigation() {
                                 }
                                 launchSingleTop = true
                                 restoreState = true
-
                             }
                         },
                         icon = {
@@ -71,7 +69,6 @@ fun AppNavigation() {
                                 modifier = Modifier
                                     .padding(2.dp)
                                     .size(30.dp)// Thêm padding cho biểu tượng
-
                             )
                         },
                         colors = NavigationBarItemDefaults.colors(
@@ -82,34 +79,35 @@ fun AppNavigation() {
                     )
                 }
             }
-}) {
-    paddingValues: PaddingValues ->
-    NavHost(
-        navController = navController,
-        startDestination = Screens.HomeScreen.name,
-        modifier = Modifier.padding(paddingValues)
-    ) {
-        composable(route = Screens.HomeScreen.name) {
-            HomeScreen(navController)
-        }
-        composable(route = Screens.SearchScreen.name) {
-            SearchScreen(navController)
-        }
-        composable(route = Screens.HistoryScreen.name) {
-            HistoryScreen(navController)
-        }
-        composable(route = Screens.SettingScreen.name) {
-            SettingScreen()
-        }
-        composable(route = Screens.CategoryScreen.name) {
-            CategoryScreen(navController)
-        }
-        composable(route = Screens.NotificationScreen.name) {
-            NotificationScreen(navController)
+        }) { paddingValues: PaddingValues ->
+        NavHost(
+            navController = navController,
+            startDestination = Screens.HomeScreen.name,
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            composable(route = Screens.HomeScreen.name) {
+                HomeScreen(navController)
+            }
+            composable(route = Screens.SearchScreen.name) {
+                SearchScreen(navController)
+            }
+            composable(route = Screens.HistoryScreen.name) {
+                HistoryScreen(navController)
+            }
+            composable(route = Screens.SettingScreen.name) {
+                SettingScreen()
+            }
+            composable(route = Screens.CategoryScreen.name) {
+                CategoryScreen(navController)
+            }
+            composable(route = Screens.NotificationScreen.name) {
+                NotificationScreen(navController)
+            }
         }
     }
 }
-}@Preview
+
+@Preview
 @Composable
 fun AppNavigationPreview() {
     AppNavigation()

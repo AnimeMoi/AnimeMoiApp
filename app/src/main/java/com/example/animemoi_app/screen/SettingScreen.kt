@@ -10,11 +10,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SettingScreen(){
+fun SettingScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
-    ){
+    ) {
         Text(
             text = "Setting Screen",
             fontFamily = FontFamily.Serif,

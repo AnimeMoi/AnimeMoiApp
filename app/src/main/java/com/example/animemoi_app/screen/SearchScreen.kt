@@ -44,10 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.animemoi_app.common.ButtonCommon
-import com.example.animemoi_app.common.ComeBack
-import com.example.animemoi_app.common.ListSourceComic
-import com.example.animemoi_app.common.searchBar
+import com.example.animemoi_app.common.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,7 +56,7 @@ fun SearchScreen(navController: NavHostController) {
     ) {
         ComeBack(title = "Tìm kiếm", navController)
         Spacer(modifier = Modifier.padding(8.dp))
-        searchBar()
+        SearchBar()
         TextAndClear()
         ListPreviousSearch(
             listOf(
@@ -101,7 +98,8 @@ fun SearchScreen(navController: NavHostController) {
             onClick = { /*TODO*/ },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp))
+                .padding(16.dp)
+        )
     }
 }
 
@@ -133,24 +131,24 @@ fun StatusComic(listStatus: List<String>) {
 fun Status(status: String) {
     var clickChoose by remember { mutableStateOf(false) }
     Surface(
-        modifier = Modifier.clickable {clickChoose = !clickChoose},
+        modifier = Modifier.clickable { clickChoose = !clickChoose },
         shape = CircleShape,
         content = {
             Box(
                 modifier = Modifier
                     .background(
-                        if(clickChoose) Color(0xFFFF6666) else Color(0xFF999999)
+                        if (clickChoose) Color(0xFFFF6666) else Color(0xFF999999)
                     )
             ) {
                 Text(
                     text = status,
                     fontWeight = FontWeight.Normal,
-                    color = if(clickChoose) Color.White else Color.Black,
+                    color = if (clickChoose) Color.White else Color.Black,
                     fontSize = 12.sp,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .padding(8.dp, 4.dp)
-                    )
+                )
             }
         }
     )
