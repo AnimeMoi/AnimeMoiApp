@@ -99,7 +99,7 @@ fun AppNavigation() {
             HistoryScreen(navController)
         }
         composable(route = Screens.SettingScreen.name) {
-            SettingScreen()
+            SettingScreen(navController)
         }
         composable(route = Screens.CategoryScreen.name) {
             CategoryScreen(navController)
