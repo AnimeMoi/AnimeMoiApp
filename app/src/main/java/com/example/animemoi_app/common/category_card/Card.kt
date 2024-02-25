@@ -35,7 +35,6 @@ import com.example.animemoi_app.model.Comic
 fun CardsComic(
     comic: Comic,
 ) {
-
     Card(
         modifier = Modifier
             .width(150.dp)
@@ -66,12 +65,8 @@ fun CardsComic(
             maxLines = 1, // Chỉ hiển thị một dòng
             overflow = TextOverflow.Ellipsis // Thêm dấu "..." khi văn bản quá dài
         )
-
     }
-
 }
-
-
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun GridComic(modifier: Modifier = Modifier) {
@@ -107,7 +102,6 @@ fun GridComic(modifier: Modifier = Modifier) {
         }
     }
 }
-
 @Composable
 fun CategoryHeader(category: Category) {
     Text(
@@ -120,8 +114,6 @@ fun CategoryHeader(category: Category) {
         maxLines = 1, // Chỉ hiển thị một dòng
     )
 }
-
-
 @Preview
 @Composable
 fun CardsPreview() {

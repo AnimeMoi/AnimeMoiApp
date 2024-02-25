@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="st01">Đang tiếng hành</string>
+    <string name="st02">Hoàn thành</string>
+    <string name="st03">Sắp ra mắt</string>
+</resources>

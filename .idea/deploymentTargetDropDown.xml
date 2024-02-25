@@ -11,6 +11,9 @@
       <entry key="CardsPreview">
         <State />
       </entry>
+      <entry key="HistoryCardPreview">
+        <State />
+      </entry>
       <entry key="SearchBarPreview">
         <State />
       </entry>
