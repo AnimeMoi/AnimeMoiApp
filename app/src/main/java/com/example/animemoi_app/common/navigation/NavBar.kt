@@ -29,4 +29,4 @@ val listOfNavItem: List<NavItem> = listOf(
     NavItem(
         label = "Settings", icon = Icons.Default.Settings, route = Screens.SettingScreen.name
     ),
-    )
+)
