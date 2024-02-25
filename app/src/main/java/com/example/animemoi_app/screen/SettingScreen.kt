@@ -69,8 +69,10 @@ fun SettingScreen(navController: NavHostController) {
 }
 
 @Composable
-fun EditDialog(userName: String) {
-    var user by remember { mutableStateOf(userName) }
+fun EditDialog( initialUserName: String,
+                onConfirmClick: () -> Unit,
+                onExitClick: () -> Unit) {
+    var userName by remember { mutableStateOf(initialUserName) }
     var newPassword by remember { mutableStateOf("") }
     var newPassword2 by remember { mutableStateOf("") }
     var showPass1 by remember { mutableStateOf(false) }
@@ -89,8 +91,8 @@ fun EditDialog(userName: String) {
         text = {
             Column {
                 TextField(
-                    value = user,
-                    onValueChange = { name -> user = name },
+                    value = userName,
+                    onValueChange = { name -> userName = name },
                     label = { Text("Biệt danh") },
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color(0xFFd9d9d9),
@@ -102,7 +104,7 @@ fun EditDialog(userName: String) {
                     value = newPassword,
                     onValueChange = { password -> newPassword = password },
                     label = { Text("Mật khẩu mới") },
-                    visualTransformation =  if(showPass1) VisualTransformation.None else PasswordVisualTransformation(),
+                    visualTransformation = if (showPass1) VisualTransformation.None else PasswordVisualTransformation(),
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color(0xFFd9d9d9),
                         focusedContainerColor = Color(0xFFd9d9d9),
@@ -121,7 +123,7 @@ fun EditDialog(userName: String) {
                     value = newPassword2,
                     onValueChange = { password -> newPassword2 = password },
                     label = { Text("Nhập lại mật khẩu mới") },
-                    visualTransformation = if(showPass2) VisualTransformation.None else PasswordVisualTransformation(),
+                    visualTransformation = if (showPass2) VisualTransformation.None else PasswordVisualTransformation(),
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color(0xFFd9d9d9),
                         focusedContainerColor = Color(0xFFd9d9d9),
@@ -140,7 +142,7 @@ fun EditDialog(userName: String) {
         },
         confirmButton = {
             Button(
-                onClick = { },
+                onClick = {onConfirmClick() },
                 colors = ButtonDefaults.buttonColors(Color(0xFFFF6666))
             ) {
                 Text("Đồng ý")
@@ -148,7 +150,7 @@ fun EditDialog(userName: String) {
         },
         dismissButton = {
             Button(
-                onClick = { },
+                onClick = { onExitClick() },
                 colors = ButtonDefaults.buttonColors(Color(0xFFFF6666))
             ) {
                 Text("Thoát")
@@ -284,14 +286,19 @@ fun PersonalInformation(user: UserData) {
         }
     }
     if (isEditing) {
-        EditDialog(userName = "Tuấn Kha")
+        EditDialog(
+            initialUserName = "Tuấn Kha",
+            onConfirmClick = {},
+            onExitClick = { isEditing = !isEditing })
     }
 }
 
 @Preview
 @Composable
 fun EditDialogPreview() {
-    EditDialog("Tuấn Kha")
+    EditDialog(initialUserName = "Tuấn Kha",
+        onConfirmClick = {},
+        onExitClick = {  })
 }
 
 @Preview(showBackground = true)
