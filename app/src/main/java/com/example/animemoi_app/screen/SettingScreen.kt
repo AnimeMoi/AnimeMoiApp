@@ -14,11 +14,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -36,6 +40,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,6 +67,79 @@ fun SettingScreen(navController: NavHostController) {
             )
         )
     }
+}
+
+@Composable
+fun EditDialog(userName: String) {
+    var user = userName
+    AlertDialog(
+        containerColor = Color(0xFFCCCCCC),
+        onDismissRequest = { },
+        title = {
+            Text(
+                "Cập nhật thông tin",
+            )
+        },
+        text = {
+            Column {
+                TextField(
+                    value = user,
+                    onValueChange = { user = it },
+                    label = { Text("Biệt danh") },
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color(0xFFd9d9d9),
+                        focusedContainerColor = Color(0xFF4D4D4D),
+                    )
+                )
+                TextField(
+                    value = user,
+                    onValueChange = { user = it },
+                    label = { Text("Mật khẩu mới") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color(0xFFd9d9d9),
+                        focusedContainerColor = Color(0xFF4D4D4D),
+                    ),
+                    trailingIcon = {
+                        if(user != "")
+                            Icon(Icons.Outlined.VisibilityOff, contentDescription = "")
+                    }
+                )
+                TextField(
+                    value = userName,
+                    onValueChange = { user = it },
+                    label = { Text("Nhập lại mật khẩu mới") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color(0xFFd9d9d9),
+                        focusedContainerColor = Color(0xFF4D4D4D),
+                    ),
+                    trailingIcon = {
+                        if(user != "")
+                            Icon(Icons.Outlined.VisibilityOff, contentDescription = "")
+                    }
+                )
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = { },
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF6666))
+                ) {
+                Text("Đồng ý")
+            }
+        },
+        dismissButton = {
+            Button(
+                onClick = { },
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF6666))
+            ) {
+                Text("Thoát")
+            }
+        }
+    )
 }
 
 @Composable
@@ -191,6 +269,11 @@ fun PersonalInformation(user: UserData) {
     }
 }
 
+@Preview
+@Composable
+fun EditDialogPreview() {
+    EditDialog("Tuấn Kha")
+}
 
 @Preview(showBackground = true)
 @Composable
