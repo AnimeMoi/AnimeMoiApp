@@ -20,11 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.animemoi_app.common.Bar
-import com.example.animemoi_app.common.ButtonCommon
+import com.example.animemoi_app.common.*
 import com.example.animemoi_app.common.category_card.GridComic
-import com.example.animemoi_app.common.ListSourceComic
-import com.example.animemoi_app.common.searchBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,7 +34,7 @@ fun CategoryScreen(navController: NavHostController) {
         val sources = listOf("Nettruyen", "BaoTangTruyen", "Yurineko", "Yurisneko")
         Bar(navController)
         Box(modifier = Modifier.padding(top = 10.dp)) {
-            searchBar()
+            SearchBar()
         }
         Row(
             modifier = Modifier
