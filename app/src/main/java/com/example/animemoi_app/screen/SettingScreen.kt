@@ -24,6 +24,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -69,9 +70,33 @@ fun SettingScreen(navController: NavHostController) {
 }
 
 @Composable
-fun EditDialog( initialUserName: String,
-                onConfirmClick: () -> Unit,
-                onExitClick: () -> Unit) {
+fun MessageDialog(message: String, onExitClick: () -> Unit) {
+    AlertDialog(
+        containerColor = Color(0xFFCCCCCC),
+        text = {
+            Text(text = message)
+        },
+        onDismissRequest = { },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onExitClick()
+                },
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF6666))
+
+            ) {
+                Text("Đồng ý")
+            }
+        },
+    )
+}
+
+@Composable
+fun EditDialog(
+    initialUserName: String,
+    onConfirmClick: (String, String, String) -> Unit,
+    onExitClick: () -> Unit
+) {
     var userName by remember { mutableStateOf(initialUserName) }
     var newPassword by remember { mutableStateOf("") }
     var newPassword2 by remember { mutableStateOf("") }
@@ -142,7 +167,7 @@ fun EditDialog( initialUserName: String,
         },
         confirmButton = {
             Button(
-                onClick = {onConfirmClick() },
+                onClick = { onConfirmClick(userName, newPassword, newPassword2) },
                 colors = ButtonDefaults.buttonColors(Color(0xFFFF6666))
             ) {
                 Text("Đồng ý")
@@ -163,6 +188,8 @@ fun EditDialog( initialUserName: String,
 fun PersonalInformation(user: UserData) {
     var showPassword by remember { mutableStateOf(false) }
     var isEditing by remember { mutableStateOf(false) }
+    var messageVisible by remember { mutableStateOf(false) }
+    var message by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -223,7 +250,8 @@ fun PersonalInformation(user: UserData) {
                     ) {
                         Text(
                             text = user.name,
-                            color = Color.White
+                            color = Color.White,
+                            modifier = Modifier.padding(16.dp, 0.dp, 0.dp, 0.dp)
                         )
                         TextField(
                             shape = RectangleShape,
@@ -240,14 +268,14 @@ fun PersonalInformation(user: UserData) {
                         )
                     }
                     Column(
-                        verticalArrangement = Arrangement.Bottom,
+                        verticalArrangement = Arrangement.Center
                     ) {
+                        Text(text = "")
                         Text(text = "")
                         Icon(
                             if (showPassword) Icons.Outlined.Visibility else Icons.Outlined.VisibilityOff,
                             contentDescription = "",
                             modifier = Modifier
-                                .padding(0.dp, 16.dp, 0.dp, 0.dp)
                                 .clickable {
                                     showPassword = !showPassword
                                 },
@@ -287,18 +315,41 @@ fun PersonalInformation(user: UserData) {
     }
     if (isEditing) {
         EditDialog(
-            initialUserName = "Tuấn Kha",
-            onConfirmClick = {},
-            onExitClick = { isEditing = !isEditing })
-    }
-}
+            initialUserName = user.name,
+            onConfirmClick = { updateName, updatePassword, updatePassword2 ->
+                when {
+                    updateName != "" && updateName != user.name && updatePassword != "" && updatePassword == updatePassword2 && updatePassword != user.password -> {
+                        user.name = updateName
+                        user.password = updatePassword
+                        messageVisible = true
+                        message = "Cập nhật thành công"
+                    }
 
-@Preview
-@Composable
-fun EditDialogPreview() {
-    EditDialog(initialUserName = "Tuấn Kha",
-        onConfirmClick = {},
-        onExitClick = {  })
+                    updateName != "" && updateName != user.name -> {
+                        user.name = updateName
+                        messageVisible = true
+                        message = "Đã cập nhật biệt danh"
+                    }
+
+                    updatePassword != "" && updatePassword == updatePassword2 && updatePassword != user.password -> {
+                        user.password = updatePassword
+                        messageVisible = true
+                        message = "Đã cập nhật mật khẩu mới"
+                    }
+
+                    else -> {
+                        messageVisible = true
+                        message = "Cập nhật thất bại"
+                    }
+                }
+                isEditing = false
+            },
+            onExitClick = { isEditing = false }
+        )
+    }
+    if (messageVisible) {
+        MessageDialog(message = message, onExitClick = { messageVisible = false })
+    }
 }
 
 @Preview(showBackground = true)
@@ -307,4 +358,4 @@ fun SettingScreenPreview() {
     SettingScreen(rememberNavController())
 }
 
-data class UserData(val image: Painter, val name: String, val password: String)
+data class UserData(val image: Painter, var name: String, var password: String)
