@@ -66,6 +66,90 @@ fun SettingScreen(navController: NavHostController) {
                 password = "TuanKha"
             )
         )
+        LoginRegisterFrame()
+    }
+}
+
+@Composable
+fun LoginRegisterFrame() {
+    Column(
+        modifier = Modifier
+            .padding(16.dp, 0.dp, 16.dp, 16.dp)
+            .fillMaxWidth()
+            .background(Color(0xFF4D4D4D), RoundedCornerShape(10.dp))
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = "Bạn cần đăng nhập để quản lí thông tin cũng như sử dụng những tính nằng đặc biệt của ứng dụng",
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 16.dp, 0.dp, 0.dp)
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(0.5f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    ButtonCommon(
+                        text = "Đăng nhập",
+                        onClick = { /*TODO*/ },
+                        modifier = Modifier
+                    )
+                }
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    ButtonCommon(
+                        text = "Đăng kí",
+                        onClick = { /*TODO*/ },
+                    )
+                }
+            }
+            Text(
+                text = "Hoặc đăng nhập bằng",
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                modifier = Modifier
+                    .padding(0.dp, 16.dp, 0.dp, 0.dp)
+                    .fillMaxWidth()
+            )
+            Row(
+                modifier = Modifier
+                    .padding(0.dp, 16.dp, 0.dp, 0.dp)
+            ) {
+                Image(
+                    painterResource(id = R.drawable.google),
+                    contentDescription = "Google",
+                    modifier = Modifier
+                        .fillMaxWidth(0.3f)
+                        .clickable { }
+                )
+                Image(
+                    painterResource(id = R.drawable.facebook),
+                    contentDescription = "Facebook",
+                    modifier = Modifier
+                        .fillMaxWidth(0.6f)
+                        .clickable { }
+                )
+                Image(
+                    painterResource(id = R.drawable.github),
+                    contentDescription = "Github",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { }
+                )
+            }
+        }
     }
 }
 
