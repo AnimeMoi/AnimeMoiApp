@@ -5,6 +5,9 @@
     <string name="status">Tình trạng</string>
     <string name="update">Cập nhật</string>
 
+    <string name="comments">Bình luận</string>
+    <string name="total_comments">Tổng %d bình luận</string>
+
     <string name="cm01">HƯỚNG DẪN CHĂM SÓC TIỂU ZOMBIE</string>
     <string name="cm02">Thần Đạo Đan Tôn</string>
     <string name="cm03">Linh Vũ Thiên Hạ</string>
