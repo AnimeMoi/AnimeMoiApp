@@ -47,7 +47,6 @@ fun AppNavigation() {
                         )
                         clip = true
                     }
-
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
@@ -61,7 +60,6 @@ fun AppNavigation() {
                                 }
                                 launchSingleTop = true
                                 restoreState = true
-
                             }
                         },
                         icon = {
@@ -71,7 +69,6 @@ fun AppNavigation() {
                                 modifier = Modifier
                                     .padding(2.dp)
                                     .size(30.dp)// Thêm padding cho biểu tượng
-
                             )
                         },
                         colors = NavigationBarItemDefaults.colors(
@@ -106,10 +103,12 @@ fun AppNavigation() {
         }
         composable(route = Screens.NotificationScreen.name) {
             NotificationScreen(navController)
+
         }
     }
 }
-}@Preview
+
+@Preview
 @Composable
 fun AppNavigationPreview() {
     AppNavigation()
