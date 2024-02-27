@@ -79,30 +79,31 @@ fun AppNavigation() {
                     )
                 }
             }
-        }) { paddingValues: PaddingValues ->
-        NavHost(
-            navController = navController,
-            startDestination = Screens.HomeScreen.name,
-            modifier = Modifier.padding(paddingValues)
-        ) {
-            composable(route = Screens.HomeScreen.name) {
-                HomeScreen(navController)
-            }
-            composable(route = Screens.SearchScreen.name) {
-                SearchScreen(navController)
-            }
-            composable(route = Screens.HistoryScreen.name) {
-                HistoryScreen(navController)
-            }
-            composable(route = Screens.SettingScreen.name) {
-                SettingScreen()
-            }
-            composable(route = Screens.CategoryScreen.name) {
-                CategoryScreen(navController)
-            }
-            composable(route = Screens.NotificationScreen.name) {
-                NotificationScreen(navController)
-            }
+}) {
+    paddingValues: PaddingValues ->
+    NavHost(
+        navController = navController,
+        startDestination = Screens.HomeScreen.name,
+        modifier = Modifier.padding(paddingValues)
+    ) {
+        composable(route = Screens.HomeScreen.name) {
+            HomeScreen(navController)
+        }
+        composable(route = Screens.SearchScreen.name) {
+            SearchScreen(navController)
+        }
+        composable(route = Screens.HistoryScreen.name) {
+            HistoryScreen(navController)
+        }
+        composable(route = Screens.SettingScreen.name) {
+            SettingScreen(navController)
+        }
+        composable(route = Screens.CategoryScreen.name) {
+            CategoryScreen(navController)
+        }
+        composable(route = Screens.NotificationScreen.name) {
+            NotificationScreen(navController)
+
         }
     }
 }
