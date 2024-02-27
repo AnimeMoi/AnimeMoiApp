@@ -1,4 +1,4 @@
-package com.example.animemoi_app.screen.setting.frame
+package com.example.animemoi_app.screen.setting.setting_app_frame
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

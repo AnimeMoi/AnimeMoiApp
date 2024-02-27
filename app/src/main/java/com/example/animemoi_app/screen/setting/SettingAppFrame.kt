@@ -20,8 +20,8 @@ import com.example.animemoi_app.R
 import com.example.animemoi_app.common.setting.Input
 import com.example.animemoi_app.common.setting.InputIcon
 import com.example.animemoi_app.common.setting.InputListChoose
-import com.example.animemoi_app.screen.setting.frame.AmountComicFrame
-import com.example.animemoi_app.screen.setting.frame.ReadingModeFrame
+import com.example.animemoi_app.screen.setting.setting_app_frame.AmountComicFrame
+import com.example.animemoi_app.screen.setting.setting_app_frame.ReadingModeFrame
 
 @Composable
 fun SettingAppFrame() {
