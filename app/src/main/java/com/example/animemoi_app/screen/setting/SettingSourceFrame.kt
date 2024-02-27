@@ -98,7 +98,7 @@ fun SettingSourceFrame() {
                 modifier = Modifier
                     .padding(0.dp, 0.dp, 8.dp, 0.dp)
             )
-            Input(text = "NSFW")
+            Input(text = "NSFW", true)
             Column(
                 modifier = Modifier
                     .fillMaxWidth()

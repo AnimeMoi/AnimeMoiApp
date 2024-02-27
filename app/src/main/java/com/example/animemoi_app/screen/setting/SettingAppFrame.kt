@@ -21,6 +21,7 @@ import com.example.animemoi_app.common.setting.Input
 import com.example.animemoi_app.common.setting.InputIcon
 import com.example.animemoi_app.common.setting.InputListChoose
 import com.example.animemoi_app.screen.setting.setting_app_frame.AmountComicFrame
+import com.example.animemoi_app.screen.setting.setting_app_frame.PrivacyFrame
 import com.example.animemoi_app.screen.setting.setting_app_frame.ReadingModeFrame
 import com.example.animemoi_app.screen.setting.setting_app_frame.StorageManagermentFrame
 
@@ -51,12 +52,13 @@ fun SettingAppFrame() {
                 listChoose = "Tiếng việt",
                 icon = Icons.Default.KeyboardArrowUp,
                 background = true)
-            Input(text = "Ẩn lịch sử")
-            Input(text = "Đồng bộ tiến trình")
-            Input(text = "Khóa xoay")
-            AmountComicFrame()
+            Input(text = "Ẩn lịch sử", true)
+            Input(text = "Đồng bộ tiến trình", true)
+            Input(text = "Khóa xoay", true)
+        /*    AmountComicFrame()
             ReadingModeFrame()
-            StorageManagermentFrame()
+            StorageManagermentFrame()*/
+            PrivacyFrame()
         }
     }
 }

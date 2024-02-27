@@ -27,14 +27,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Input(text: String) {
+fun Input(text: String, background: Boolean) {
     var checked by remember { mutableStateOf(false) }
     Row(
         modifier = Modifier
             .padding(0.dp, 8.dp)
             .fillMaxWidth()
             .height(40.dp)
-            .background(Color(0f, 0f, 0f, 0.5f), CircleShape),
+            .background(if(background) Color(0f, 0f, 0f, 0.5f) else Color.Transparent, CircleShape),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
