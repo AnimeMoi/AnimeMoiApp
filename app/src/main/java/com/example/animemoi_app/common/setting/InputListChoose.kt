@@ -22,13 +22,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun InputListChoose(title: String, listChoose: String, icon: ImageVector){
+fun InputListChoose(title: String, listChoose: String, icon: ImageVector, background: Boolean){
     Row(
         modifier = Modifier
             .padding(0.dp, 8.dp)
             .fillMaxWidth()
             .height(40.dp)
-            .background(Color(0f, 0f, 0f, 0.5f), CircleShape),
+            .background(if(background) Color(0f, 0f, 0f, 0.5f) else Color.Transparent, CircleShape),
     ) {
         Row(
             modifier = Modifier

@@ -21,6 +21,7 @@ import com.example.animemoi_app.common.setting.Input
 import com.example.animemoi_app.common.setting.InputIcon
 import com.example.animemoi_app.common.setting.InputListChoose
 import com.example.animemoi_app.screen.setting.frame.AmountComicFrame
+import com.example.animemoi_app.screen.setting.frame.ReadingModeFrame
 
 @Composable
 fun SettingAppFrame() {
@@ -44,11 +45,16 @@ fun SettingAppFrame() {
                     .padding(0.dp, 0.dp, 8.dp, 0.dp)
             )
             InputIcon(text = "Chọn màu nền", icon = painterResource(id = R.drawable.color))
-            InputListChoose(title = "Chọn ngôn ngữ", listChoose = "Tiếng việt", icon = Icons.Default.KeyboardArrowUp)
+            InputListChoose(
+                title = "Chọn ngôn ngữ",
+                listChoose = "Tiếng việt",
+                icon = Icons.Default.KeyboardArrowUp,
+                background = true)
             Input(text = "Ẩn lịch sử")
             Input(text = "Đồng bộ tiến trình")
             Input(text = "Khóa xoay")
             AmountComicFrame()
+            ReadingModeFrame()
         }
     }
 }
