@@ -22,6 +22,7 @@ import com.example.animemoi_app.common.setting.InputIcon
 import com.example.animemoi_app.common.setting.InputListChoose
 import com.example.animemoi_app.screen.setting.setting_app_frame.AmountComicFrame
 import com.example.animemoi_app.screen.setting.setting_app_frame.ReadingModeFrame
+import com.example.animemoi_app.screen.setting.setting_app_frame.StorageManagermentFrame
 
 @Composable
 fun SettingAppFrame() {
@@ -55,6 +56,7 @@ fun SettingAppFrame() {
             Input(text = "Khóa xoay")
             AmountComicFrame()
             ReadingModeFrame()
+            StorageManagermentFrame()
         }
     }
 }
