@@ -1,6 +1,5 @@
 package com.example.animemoi_app.common.setting
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,12 +18,10 @@ import androidx.compose.ui.unit.sp
 fun TitleWithIcon(title: String, icon: ImageVector) {
     Row(
         modifier = Modifier
-            .padding(8.dp, 0.dp)
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.End
+            .fillMaxWidth()
+            .padding(8.dp, 0.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-
         Text(
             text = title,
             fontSize = 12.sp,
@@ -38,6 +35,7 @@ fun TitleWithIcon(title: String, icon: ImageVector) {
             icon,
             contentDescription = "Icon",
             tint = Color.White,
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }

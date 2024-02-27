@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,6 +19,8 @@ import androidx.compose.ui.unit.sp
 import com.example.animemoi_app.R
 import com.example.animemoi_app.common.setting.Input
 import com.example.animemoi_app.common.setting.InputIcon
+import com.example.animemoi_app.common.setting.InputListChoose
+import com.example.animemoi_app.screen.setting.frame.AmountComicFrame
 
 @Composable
 fun SettingAppFrame() {
@@ -40,9 +44,11 @@ fun SettingAppFrame() {
                     .padding(0.dp, 0.dp, 8.dp, 0.dp)
             )
             InputIcon(text = "Chọn màu nền", icon = painterResource(id = R.drawable.color))
+            InputListChoose(title = "Chọn ngôn ngữ", listChoose = "Tiếng việt", icon = Icons.Default.KeyboardArrowUp)
             Input(text = "Ẩn lịch sử")
             Input(text = "Đồng bộ tiến trình")
             Input(text = "Khóa xoay")
+            AmountComicFrame()
         }
     }
 }

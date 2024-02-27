@@ -15,6 +15,7 @@ import com.example.animemoi_app.R
 import com.example.animemoi_app.common.ComeBack
 import com.example.animemoi_app.screen.setting.LoginRegisterFrame
 import com.example.animemoi_app.screen.setting.PersonalInformation
+import com.example.animemoi_app.screen.setting.SettingAppFrame
 import com.example.animemoi_app.screen.setting.SettingSourceFrame
 
 @Composable
@@ -24,20 +25,19 @@ fun SettingScreen(navController: NavHostController) {
             .fillMaxSize()
             .background(Color.Black)
     ) {
-
         ComeBack(title = "Cài đặt", navController)
-
-        PersonalInformation(
-            user = UserData(
-                image = painterResource(id = R.drawable.deba),
-                name = "Tuấn Kha",
-                password = "TuanKha"
+        Column {
+           /* PersonalInformation(
+                user = UserData(
+                    image = painterResource(id = R.drawable.deba),
+                    name = "Tuấn Kha",
+                    password = "TuanKha"
+                )
             )
-        )
-
-        LoginRegisterFrame()
-
-        SettingSourceFrame()
+            LoginRegisterFrame()
+            SettingSourceFrame()*/
+            SettingAppFrame()
+        }
     }
 }
 
