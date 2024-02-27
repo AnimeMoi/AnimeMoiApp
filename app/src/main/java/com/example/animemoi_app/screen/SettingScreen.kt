@@ -2,7 +2,8 @@ package com.example.animemoi_app.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,12 +23,14 @@ import com.example.animemoi_app.screen.setting.SettingSourceFrame
 fun SettingScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
             .background(Color.Black)
     ) {
         ComeBack(title = "Cài đặt", navController)
-        Column {
-           /* PersonalInformation(
+        Column (
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+        ) {
+            PersonalInformation(
                 user = UserData(
                     image = painterResource(id = R.drawable.deba),
                     name = "Tuấn Kha",
@@ -35,7 +38,7 @@ fun SettingScreen(navController: NavHostController) {
                 )
             )
             LoginRegisterFrame()
-            SettingSourceFrame()*/
+            SettingSourceFrame()
             SettingAppFrame()
         }
     }

@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -45,6 +47,8 @@ fun ListSource() {
         GridCells.Fixed(1),
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .height(150.dp)
     ) {
         items(listSource) { source ->
             Source(source = source)
@@ -79,40 +83,42 @@ fun Source(source: SourceData) {
 
 @Composable
 fun SettingSourceFrame() {
-    Column(
-        modifier = Modifier
-            .padding(16.dp, 0.dp, 16.dp, 16.dp)
-            .fillMaxWidth()
-            .background(Color(0xFF4D4D4D), RoundedCornerShape(10.dp))
-    ) {
+    Box {
         Column(
             modifier = Modifier
-                .padding(8.dp)
+                .padding(16.dp, 0.dp, 16.dp, 16.dp)
                 .fillMaxWidth()
+                .background(Color(0xFF4D4D4D), RoundedCornerShape(10.dp))
         ) {
-            Text(
-                text = "Cài đặt nguồn truyện",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.White,
-                modifier = Modifier
-                    .padding(0.dp, 0.dp, 8.dp, 0.dp)
-            )
-            Input(text = "NSFW", true)
             Column(
                 modifier = Modifier
+                    .padding(8.dp)
                     .fillMaxWidth()
-                    .background(Color(0f, 0f, 0f, 0.5f), RoundedCornerShape(10.dp))
             ) {
-                TitleWithIcon(
-                    title = "Nguồn truyện của bạn",
-                    icon = Icons.Default.KeyboardArrowUp
+                Text(
+                    text = "Cài đặt nguồn truyện",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.White,
+                    modifier = Modifier
+                        .padding(0.dp, 0.dp, 8.dp, 0.dp)
                 )
-                Box {
-                    Divider(color = Color(0xFF808080), modifier = Modifier.padding(8.dp))
+                Input(text = "NSFW", true)
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color(0f, 0f, 0f, 0.5f), RoundedCornerShape(10.dp))
+                ) {
+                    TitleWithIcon(
+                        title = "Nguồn truyện của bạn",
+                        icon = Icons.Default.KeyboardArrowUp
+                    )
+                    Box {
+                        Divider(color = Color(0xFF808080), modifier = Modifier.padding(8.dp))
+                    }
+                    TitleWithIcon(title = "Thêm nguồn mới", icon = Icons.Default.Add)
+                    ListSource()
                 }
-                TitleWithIcon(title = "Thêm nguồn mới", icon = Icons.Default.Add)
-                ListSource()
             }
         }
     }

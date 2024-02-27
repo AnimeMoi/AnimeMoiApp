@@ -59,7 +59,7 @@ fun StorageManagermentFrame() {
 fun CleanStorage(title: String, capacity: String) {
     Row (
         modifier = Modifier
-            .padding(8.dp, 0.dp)
+            .padding(8.dp, 8.dp)
             .fillMaxWidth(),
     ) {
         Text(
