@@ -28,7 +28,10 @@ import com.example.animemoi_app.common.category_card.GridComic
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CategoryScreen(navController: NavHostController) {
+fun CategoryScreen(
+    navController: NavHostController,
+    selectedComic: (Int) -> Unit
+    ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -71,8 +74,7 @@ fun CategoryScreen(navController: NavHostController) {
         Box {
             GridComic(
                 modifier = Modifier,
-                navController = navController
-
+                selectedComic = selectedComic
             )
         }
     }

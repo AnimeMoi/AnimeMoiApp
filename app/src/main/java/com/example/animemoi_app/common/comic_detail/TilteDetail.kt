@@ -47,6 +47,7 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -59,7 +60,11 @@ import com.example.animemoi_app.common.ListSourceComic
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TitleDetail() {
+fun TitleDetail(
+    comicImage: Int,
+    comicTitle: Int,
+    navigateUp: () -> Unit
+) {
     //Card title
     Card(
         modifier = Modifier
@@ -69,7 +74,7 @@ fun TitleDetail() {
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
-                painter = painterResource(id = R.drawable.huongdanchamsoctieuzombie),
+                painter = painterResource(id = comicImage),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxSize()
@@ -97,7 +102,7 @@ fun TitleDetail() {
 
                 ) {
                     Text(
-                        text = "Hướng dẫn chăm sóc tiểu zombie",
+                        text = stringResource(id = comicTitle),
                         color = Color.White,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
@@ -169,5 +174,5 @@ fun TitleDetail() {
 @Preview
 @Composable
 fun PreviewTitleDetail() {
-    TitleDetail()
+    //TitleDetail()
 }

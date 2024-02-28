@@ -12,6 +12,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
@@ -26,17 +27,24 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.animemoi_app.common.navigation.AppDestinations.COMIC_DETAIL_ID_KEY
 import com.example.animemoi_app.screen.CategoryScreen
+import com.example.animemoi_app.screen.ComicDetailScreen
+import com.example.animemoi_app.screen.DetailScreen
 import com.example.animemoi_app.screen.HistoryScreen
 import com.example.animemoi_app.screen.HomeScreen
 import com.example.animemoi_app.screen.NotificationScreen
 import com.example.animemoi_app.screen.SearchScreen
 import com.example.animemoi_app.screen.SettingScreen
 
+private object AppDestinations {
+    const val COMIC_DETAIL_ID_KEY = "ComicDetailId"
+}
 
 @Composable
 fun AppNavigation() {
     val navController: NavHostController = rememberNavController()
+    val actions = remember(navController) { AppActions(navController) }
     Scaffold(
         bottomBar = {
             NavigationBar(
@@ -100,19 +108,38 @@ fun AppNavigation() {
             composable(route = Screens.SettingScreen.name) {
                 SettingScreen(navController)
             }
-            composable(route = Screens.CategoryScreen.name) {
-                CategoryScreen(navController)
-            }
             composable(route = Screens.NotificationScreen.name) {
                 NotificationScreen(navController)
-
+            }
+            composable(route = Screens.CategoryScreen.name) {
+                CategoryScreen(navController, selectedComic = actions.selectedComic)
             }
             composable(
-                route = "ComicDetailScreen",
-            ) {
-               // ComicDetailScreen()
+                route = "${Screens.DetailComicScreen.name}/{${COMIC_DETAIL_ID_KEY}}",
+                arguments = listOf(
+                    navArgument(COMIC_DETAIL_ID_KEY){
+                        type = NavType.IntType
+                    }
+                )
+            ) {backStackEntry ->
+               val arguments = requireNotNull(backStackEntry.arguments)
+                DetailScreen(
+                    comicId = arguments.getInt(COMIC_DETAIL_ID_KEY),
+                    navigateUp = actions.navigateUp
+                )
             }
         }
+    }
+}
+
+private class AppActions(
+    navController: NavHostController
+) {
+    val selectedComic: (Int) -> Unit = { comicId: Int ->
+        navController.navigate("${Screens.DetailComicScreen.name}/$comicId")
+    }
+    val navigateUp: () -> Unit = {
+        navController.navigateUp()
     }
 }
 

@@ -15,10 +15,20 @@ class ComicData {
                 "22:00 12/1/2024"
             ),
             Comic(
-                R.string.cm02, R.drawable.thancaodanton606028, R.string.tth, R.string.st01, "214", "22:00 12/1/2024"
+                R.string.cm02,
+                R.drawable.thancaodanton606028,
+                R.string.tth,
+                R.string.st01,
+                "214",
+                "22:00 12/1/2024"
             ),
             Comic(
-                R.string.cm03, R.drawable.linhvuthienha, R.string.thieunhi, R.string.st02, "2123", "22:00 12/1/2024"
+                R.string.cm03,
+                R.drawable.linhvuthienha,
+                R.string.thieunhi,
+                R.string.st02,
+                "2123",
+                "22:00 12/1/2024"
             ),
             Comic(
                 R.string.cm04,
@@ -37,22 +47,52 @@ class ComicData {
                 "22:00 12/1/2024"
             ),
             Comic(
-                R.string.cm06, R.drawable.thegioihoanmy, R.string.trtr, R.string.st01, "234", "22:00 12/1/2024"
+                R.string.cm06,
+                R.drawable.thegioihoanmy,
+                R.string.trtr,
+                R.string.st01,
+                "234",
+                "22:00 12/1/2024"
             ),
             Comic(
-                R.string.cm07, R.drawable.phamnhantutien, R.string.thieunhi, R.string.st01, "234", "22:00 12/1/2024"
+                R.string.cm07,
+                R.drawable.phamnhantutien,
+                R.string.thieunhi,
+                R.string.st01,
+                "234",
+                "22:00 12/1/2024"
             ),
             Comic(
-                R.string.cm08, R.drawable.tiennghich, R.string.trtr, R.string.st01, "234", "22:00 12/1/2024"
+                R.string.cm08,
+                R.drawable.tiennghich,
+                R.string.trtr,
+                R.string.st01,
+                "234",
+                "22:00 12/1/2024"
             ),
             Comic(
-                R.string.cm09, R.drawable.deba, R.string.thieunhi, R.string.st03, "234", "22:00 12/1/2024"
+                R.string.cm09,
+                R.drawable.deba,
+                R.string.thieunhi,
+                R.string.st03,
+                "234",
+                "22:00 12/1/2024"
             ),
             Comic(
-                R.string.cm10, R.drawable.tiennghich, R.string.thieunhi, R.string.st03, "234", "22:00 12/1/2024"
+                R.string.cm10,
+                R.drawable.tiennghich,
+                R.string.thieunhi,
+                R.string.st03,
+                "234",
+                "22:00 12/1/2024"
             ),
             Comic(
-                R.string.cm11, R.drawable.requytroicho480197, R.string.trtr, R.string.st03, "234", "22:00 12/1/2024"
+                R.string.cm11,
+                R.drawable.requytroicho480197,
+                R.string.trtr,
+                R.string.st03,
+                "234",
+                "22:00 12/1/2024"
             ),
         )
     }
