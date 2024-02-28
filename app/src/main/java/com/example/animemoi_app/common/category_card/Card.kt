@@ -1,6 +1,7 @@
 package com.example.animemoi_app.common.category_card
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -26,19 +27,25 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.animemoi_app.data.CategoryData
 import com.example.animemoi_app.data.ComicData
 import com.example.animemoi_app.model.Category
 import com.example.animemoi_app.model.Comic
 
+
 @Composable
 fun CardsComic(
     comic: Comic,
+    navController: NavController,
 ) {
     Card(
         modifier = Modifier
             .width(150.dp)
-            .height(300.dp),
+            .height(300.dp)
+            .clickable {
+                navController.navigate(route = "ComicDetailScreen")
+            },
         elevation = CardDefaults.cardElevation(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
@@ -52,7 +59,6 @@ fun CardsComic(
                 .height(230.dp)
                 .clip(RoundedCornerShape(10.dp)), // Round corners
             contentScale = ContentScale.Crop // Scale the image content,
-
         )
         Text(
             text = stringResource(id = comic.stringResourceId),
@@ -69,7 +75,10 @@ fun CardsComic(
 }
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun GridComic(modifier: Modifier = Modifier) {
+fun GridComic(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+) {
     val comics = ComicData().loadComicCard()
     val categories = CategoryData().loadCategory()
     LazyColumn(
@@ -94,7 +103,10 @@ fun GridComic(modifier: Modifier = Modifier) {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         for (comic in comicsInCategory) {
-                            CardsComic(comic = comic)
+                            CardsComic(
+                                comic = comic,
+                                navController = navController
+                                )
                         }
                     }
                 }
@@ -117,5 +129,5 @@ fun CategoryHeader(category: Category) {
 @Preview
 @Composable
 fun CardsPreview() {
-    GridComic()
+    //GridComic()
 }

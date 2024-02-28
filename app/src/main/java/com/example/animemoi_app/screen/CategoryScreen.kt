@@ -20,6 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.common.*
 import com.example.animemoi_app.common.category_card.GridComic
 
@@ -66,7 +69,11 @@ fun CategoryScreen(navController: NavHostController) {
             ListSourceComic(sources = sources)
         }
         Box {
-            GridComic()
+            GridComic(
+                modifier = Modifier,
+                navController = navController
+
+            )
         }
     }
 }
