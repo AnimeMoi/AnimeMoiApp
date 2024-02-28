@@ -20,15 +20,18 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.animemoi_app.screen.CategoryScreen
 import com.example.animemoi_app.screen.HistoryScreen
+import com.example.animemoi_app.screen.HomeScreen
+import com.example.animemoi_app.screen.NotificationScreen
 import com.example.animemoi_app.screen.SearchScreen
 import com.example.animemoi_app.screen.SettingScreen
-import com.example.animemoi_app.screen.*
 
 
 @Composable
@@ -102,7 +105,6 @@ fun AppNavigation() {
             }
             composable(route = Screens.NotificationScreen.name) {
                 NotificationScreen(navController)
-
             }
         }
     }
@@ -113,7 +115,4 @@ fun AppNavigation() {
 fun AppNavigationPreview() {
     AppNavigation()
 }
-
-
-
 

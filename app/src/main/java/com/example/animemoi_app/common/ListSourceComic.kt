@@ -23,7 +23,31 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.animemoi_app.data.SourceData
+import com.example.animemoi_app.model.SourceComic
 
+@JvmName("ListSourceComicForSourceComic")
+@Composable
+fun ListSourceComic(sources: List<SourceComic>) {
+    var selectedSourceIndex by remember { mutableIntStateOf(0) }
+    LazyRow(
+        Modifier
+            .background(Color.Black)
+            .fillMaxWidth()
+            .height(50.dp)
+    ) {
+        items(sources) { item ->
+            Source(
+                source = item.name,
+                isSelect = selectedSourceIndex == sources.indexOf(item)
+            ) {
+                selectedSourceIndex = sources.indexOf(item)
+            }
+        }
+    }
+}
+
+@JvmName("ListSourceComicForString")
 @Composable
 fun ListSourceComic(sources: List<String>) {
     var selectedSourceIndex by remember { mutableIntStateOf(0) }
@@ -74,7 +98,7 @@ fun Source(source: String, isSelect: Boolean, onClick: () -> Unit) {
 @Preview
 @Composable
 fun PreviewListSourceComic() {
-    val sources = listOf("NetTruyen", "BaoTangTruyen", "Yurineko")
+    val sources = SourceData().loadSourceData()
     ListSourceComic(sources)
 }
 
