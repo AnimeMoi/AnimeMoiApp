@@ -5,16 +5,7 @@
       <entry key="ButtonCommonPreview">
         <State />
       </entry>
-      <entry key="Preview">
-        <State />
-      </entry>
-      <entry key="PreviewComicDetailScreen">
-        <State />
-      </entry>
-      <entry key="PreviewCommentComicDetail">
-        <State />
-      </entry>
-      <entry key="PreviewTitleDetail">
+      <entry key="PreviewDetailScreen">
         <State />
       </entry>
       <entry key="app">

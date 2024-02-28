@@ -6,5 +6,6 @@ enum class Screens {
     SearchScreen,
     SettingScreen,
     CategoryScreen,
-    NotificationScreen
+    NotificationScreen,
+    DetailComicScreen,
 }
