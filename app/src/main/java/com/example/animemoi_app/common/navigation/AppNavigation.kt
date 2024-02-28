@@ -29,7 +29,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.animemoi_app.common.navigation.AppDestinations.COMIC_DETAIL_ID_KEY
 import com.example.animemoi_app.screen.CategoryScreen
-import com.example.animemoi_app.screen.ComicDetailScreen
 import com.example.animemoi_app.screen.DetailScreen
 import com.example.animemoi_app.screen.HistoryScreen
 import com.example.animemoi_app.screen.HomeScreen
