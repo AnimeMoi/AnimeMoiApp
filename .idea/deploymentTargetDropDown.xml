@@ -2,10 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="ButtonCommonPreview">
+        <State />
+      </entry>
       <entry key="Preview">
         <State />
       </entry>
-      <entry key="SettingScreenPreview">
+      <entry key="PreviewComicDetailScreen">
+        <State />
+      </entry>
+      <entry key="PreviewCommentComicDetail">
+        <State />
+      </entry>
+      <entry key="PreviewTitleDetail">
         <State />
       </entry>
       <entry key="app">
