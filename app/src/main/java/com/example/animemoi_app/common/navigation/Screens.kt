@@ -8,4 +8,5 @@ enum class Screens {
     CategoryScreen,
     NotificationScreen,
     DetailComicScreen,
+    MoreComicScreen
 }

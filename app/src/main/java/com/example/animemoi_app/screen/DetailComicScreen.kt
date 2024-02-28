@@ -41,5 +41,5 @@ fun DetailScreen(
 @Preview
 @Composable
 fun PreviewDetailScreen() {
-   DetailScreen(6,navigateUp = { })
+  DetailScreen(6,navigateUp = { })
 }

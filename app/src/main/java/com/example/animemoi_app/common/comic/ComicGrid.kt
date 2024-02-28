@@ -25,8 +25,8 @@ fun ComicGrid() {
             Box(modifier = Modifier.padding(8.dp)) {
                 Comic(
                     imageUrl = "https://www.nettruyenup.vn/images/comics/gia-toc-diep-vien-yozakura.jpg",
-                    name = ":D",
-                    moreInfo = false
+                    name = "Truyện",
+                    moreInfo = true
                 )
             }
         }
