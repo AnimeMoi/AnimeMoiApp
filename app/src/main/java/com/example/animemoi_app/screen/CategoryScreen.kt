@@ -20,15 +20,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.common.*
 import com.example.animemoi_app.common.category_card.GridComic
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CategoryScreen(navController: NavHostController) {
+fun CategoryScreen(
+    navController: NavHostController,
+    selectedComic: (Int) -> Unit
+    ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -71,8 +71,7 @@ fun CategoryScreen(navController: NavHostController) {
         Box {
             GridComic(
                 modifier = Modifier,
-                navController = navController
-
+                selectedComic = selectedComic
             )
         }
     }

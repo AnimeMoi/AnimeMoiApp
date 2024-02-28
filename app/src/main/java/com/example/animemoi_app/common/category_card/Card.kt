@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -27,25 +29,24 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.animemoi_app.data.CategoryData
-import com.example.animemoi_app.data.ComicData
+import com.example.animemoi_app.data.ComicRepo
 import com.example.animemoi_app.model.Category
-import com.example.animemoi_app.model.Comic
+import com.example.animemoi_app.model.ComicTest
 
 
 @Composable
 fun CardsComic(
-    comic: Comic,
-    navController: NavController,
-) {
+    comic: ComicTest,
+    selectedComic: (Int) -> Unit
+){
     Card(
         modifier = Modifier
             .width(150.dp)
             .height(300.dp)
-            .clickable {
-                navController.navigate(route = "ComicDetailScreen")
-            },
+            .clickable(onClick = {
+                selectedComic(comic.comicId)
+            }),
         elevation = CardDefaults.cardElevation(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
@@ -77,12 +78,16 @@ fun CardsComic(
 @Composable
 fun GridComic(
     modifier: Modifier = Modifier,
-    navController: NavController,
+    selectedComic: (Int) -> Unit
 ) {
-    val comics = ComicData().loadComicCard()
+    //val comics = ComicData().loadComicCard()
     val categories = CategoryData().loadCategory()
+    val scrollState = rememberLazyListState()
+    val context = LocalContext.current
+    val comics: List<ComicTest> = ComicRepo.getComicsList(context)
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(1.dp),
+        state = scrollState
         //modifier = Modifier.padding(horizontal = 25.dp, vertical = 15.dp)
     ) {
         categories.forEach { category ->
@@ -105,7 +110,7 @@ fun GridComic(
                         for (comic in comicsInCategory) {
                             CardsComic(
                                 comic = comic,
-                                navController = navController
+                                selectedComic = selectedComic
                                 )
                         }
                     }
