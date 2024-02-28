@@ -24,17 +24,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.common.ComeBack
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .background(Color.Black)
     ) {
-        ComeBack(title = "AnimeMoi", rememberNavController())
+        ComeBack(title = "AnimeMoi", navController)
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
@@ -103,10 +104,4 @@ fun CheckAccept() {
                 .padding(16.dp, 16.dp)
         )
     }
-}
-
-@Preview
-@Composable
-fun RegisterScreenPreview() {
-    RegisterScreen()
 }

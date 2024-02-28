@@ -37,18 +37,19 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.R
 import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.common.ComeBack
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .background(Color.Black)
     ) {
-        ComeBack(title = "AnimeMoi", rememberNavController())
+        ComeBack(title = "AnimeMoi", navController)
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
@@ -208,8 +209,3 @@ fun TextFieldInput(label: String, trailingIcon: ImageVector, password: Boolean) 
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
-}

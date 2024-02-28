@@ -32,8 +32,10 @@ import com.example.animemoi_app.screen.CategoryScreen
 import com.example.animemoi_app.screen.DetailScreen
 import com.example.animemoi_app.screen.HistoryScreen
 import com.example.animemoi_app.screen.HomeScreen
+import com.example.animemoi_app.screen.LoginScreen
 import com.example.animemoi_app.screen.MoreComicScreen
 import com.example.animemoi_app.screen.NotificationScreen
+import com.example.animemoi_app.screen.RegisterScreen
 import com.example.animemoi_app.screen.SearchScreen
 import com.example.animemoi_app.screen.SettingScreen
 
@@ -132,6 +134,16 @@ fun AppNavigation() {
                 route = Screens.MoreComicScreen.name
             ){
                 MoreComicScreen(navController = navController)
+            }
+            composable(
+                route = Screens.LoginScreen.name
+            ){
+                LoginScreen(navController = navController)
+            }
+            composable(
+                route = Screens.RegisterScreen.name
+            ){
+                RegisterScreen(navController = navController)
             }
         }
     }

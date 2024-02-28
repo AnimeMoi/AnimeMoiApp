@@ -37,7 +37,7 @@ fun SettingScreen(navController: NavHostController) {
                     password = "TuanKha"
                 )
             )
-            LoginRegisterFrame()
+            LoginRegisterFrame(navController)
             SettingSourceFrame()
             SettingAppFrame()
         }

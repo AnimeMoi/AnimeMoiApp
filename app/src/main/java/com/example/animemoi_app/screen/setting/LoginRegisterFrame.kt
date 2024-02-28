@@ -17,11 +17,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.animemoi_app.R
 import com.example.animemoi_app.common.ButtonCommon
 
 @Composable
-fun LoginRegisterFrame() {
+fun LoginRegisterFrame(navController: NavHostController) {
     Box {
         Column(
             modifier = Modifier
@@ -52,7 +53,7 @@ fun LoginRegisterFrame() {
                     ) {
                         ButtonCommon(
                             text = "Đăng nhập",
-                            onClick = { /*TODO*/ },
+                            onClick = { navController.navigate("LoginScreen") },
                             modifier = Modifier
                         )
                     }
@@ -62,7 +63,7 @@ fun LoginRegisterFrame() {
                     ) {
                         ButtonCommon(
                             text = "Đăng kí",
-                            onClick = { /*TODO*/ },
+                            onClick = { navController.navigate("RegisterScreen") },
                         )
                     }
                 }
