@@ -11,9 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 @Composable
-fun ComicRowWithTitle(title: String, modifier: Modifier = Modifier) {
+fun ComicRowWithTitle(
+    title: String,
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+) {
     Column {
         Row(
             modifier = modifier.fillMaxWidth(),
@@ -31,7 +36,9 @@ fun ComicRowWithTitle(title: String, modifier: Modifier = Modifier) {
                 contentDescription = null,
                 modifier = modifier
                     .padding(start = 0.dp, top = 8.dp, end = 16.dp, bottom = 8.dp)
-                    .clickable {}
+                    .clickable {
+                        navController.navigate("MoreComicScreen")
+                    }
             )
         }
         ComicRow()
@@ -41,5 +48,5 @@ fun ComicRowWithTitle(title: String, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun ComicRowWithTitlePreview() {
-    ComicRowWithTitle(title = "Truyện mới đăng")
+    //ComicRowWithTitle(title = "Truyện mới đăng",navController = { })
 }
