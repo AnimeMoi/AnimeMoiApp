@@ -105,12 +105,6 @@ fun AppNavigation() {
             }
             composable(route = Screens.NotificationScreen.name) {
                 NotificationScreen(navController)
-
-            }
-            composable(
-                route = "ComicDetailScreen",
-            ) {
-               // ComicDetailScreen()
             }
         }
     }
