@@ -28,9 +28,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.animemoi_app.screen.CategoryScreen
 import com.example.animemoi_app.screen.HistoryScreen
+import com.example.animemoi_app.screen.HomeScreen
+import com.example.animemoi_app.screen.NotificationScreen
 import com.example.animemoi_app.screen.SearchScreen
 import com.example.animemoi_app.screen.SettingScreen
-import com.example.animemoi_app.screen.*
 
 
 @Composable
@@ -97,13 +98,14 @@ fun AppNavigation() {
                 HistoryScreen(navController)
             }
             composable(route = Screens.SettingScreen.name) {
-                SettingScreen()
+                SettingScreen(navController)
             }
             composable(route = Screens.CategoryScreen.name) {
                 CategoryScreen(navController)
             }
             composable(route = Screens.NotificationScreen.name) {
                 NotificationScreen(navController)
+
             }
             composable(
                 route = "ComicDetailScreen",
@@ -119,7 +121,4 @@ fun AppNavigation() {
 fun AppNavigationPreview() {
     AppNavigation()
 }
-
-
-
 
