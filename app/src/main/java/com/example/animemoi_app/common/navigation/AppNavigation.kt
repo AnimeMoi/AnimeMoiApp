@@ -110,7 +110,7 @@ fun AppNavigation() {
             composable(
                 route = "ComicDetailScreen",
             ) {
-                ComicDetailScreen()
+               // ComicDetailScreen()
             }
         }
     }
