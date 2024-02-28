@@ -26,9 +26,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.screen.CategoryScreen
 import com.example.animemoi_app.screen.HistoryScreen
+import com.example.animemoi_app.screen.HomeScreen
+import com.example.animemoi_app.screen.NotificationScreen
 import com.example.animemoi_app.screen.SearchScreen
 import com.example.animemoi_app.screen.SettingScreen
-import com.example.animemoi_app.screen.*
 
 
 @Composable
@@ -79,31 +80,31 @@ fun AppNavigation() {
                     )
                 }
             }
-}) {
-    paddingValues: PaddingValues ->
-    NavHost(
-        navController = navController,
-        startDestination = Screens.HomeScreen.name,
-        modifier = Modifier.padding(paddingValues)
-    ) {
-        composable(route = Screens.HomeScreen.name) {
-            HomeScreen(navController)
-        }
-        composable(route = Screens.SearchScreen.name) {
-            SearchScreen(navController)
-        }
-        composable(route = Screens.HistoryScreen.name) {
-            HistoryScreen(navController)
-        }
-        composable(route = Screens.SettingScreen.name) {
-            SettingScreen(navController)
-        }
-        composable(route = Screens.CategoryScreen.name) {
-            CategoryScreen(navController)
-        }
-        composable(route = Screens.NotificationScreen.name) {
-            NotificationScreen(navController)
+        }) { paddingValues: PaddingValues ->
+        NavHost(
+            navController = navController,
+            startDestination = Screens.HomeScreen.name,
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            composable(route = Screens.HomeScreen.name) {
+                HomeScreen(navController)
+            }
+            composable(route = Screens.SearchScreen.name) {
+                SearchScreen(navController)
+            }
+            composable(route = Screens.HistoryScreen.name) {
+                HistoryScreen(navController)
+            }
+            composable(route = Screens.SettingScreen.name) {
+                SettingScreen(navController)
+            }
+            composable(route = Screens.CategoryScreen.name) {
+                CategoryScreen(navController)
+            }
+            composable(route = Screens.NotificationScreen.name) {
+                NotificationScreen(navController)
 
+            }
         }
     }
 }
@@ -113,7 +114,4 @@ fun AppNavigation() {
 fun AppNavigationPreview() {
     AppNavigation()
 }
-
-
-
 
