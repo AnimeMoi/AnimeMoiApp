@@ -42,10 +42,10 @@ fun ComicColumn(
             .height(90.dp)
             .padding(horizontal = 15.dp)
             .clickable {
-                       selectedComic(comic.comicId)
+                selectedComic(comic.comicId)
             },
         elevation = CardDefaults.cardElevation(10.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+        colors = CardDefaults.cardColors(containerColor = Color.Black),
         shape = RoundedCornerShape(5.dp)
     ) {
         Row {
