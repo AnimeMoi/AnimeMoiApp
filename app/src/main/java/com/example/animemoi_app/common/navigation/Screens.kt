@@ -11,5 +11,6 @@ enum class Screens {
     MoreComicScreen,
     LoginScreen,
     RegisterScreen,
-    ReadingScreen
+    ReadingScreen,
+    CommentScreen,
 }

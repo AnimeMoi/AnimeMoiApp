@@ -22,7 +22,7 @@ import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.common.ListSourceComic
 
 @Composable
-fun NavComicDetail(navController: NavHostController) {
+fun NavComicDetail(titleComic:String, navController: NavHostController) {
     Column {
         //Nav comic
         Row(
@@ -33,7 +33,7 @@ fun NavComicDetail(navController: NavHostController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             ButtonCommon(
-                onClick = { navController.navigate("ReadingScreen") },
+                onClick = { navController.navigate("ReadingScreen/${titleComic}") },
                 text = "Đọc",
                 iconButton = Icons.Default.MenuBook
             )

@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import com.example.animemoi_app.common.comic_detail.ChapterListDetail
@@ -30,6 +31,7 @@ fun DetailScreen(
     val comic: ComicTest = remember(comicId) {
         getComic(comicId, context)
     }
+    val titleComic = stringResource(id = comic.stringResourceId)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +39,7 @@ fun DetailScreen(
     ){
         TitleDetail(comic.imageResourceId,comic.stringResourceId,navigateUp)
         VoteComicDetail()
-        NavComicDetail(navController)
+        NavComicDetail(titleComic, navController)
         Column (
             modifier = Modifier
                 .fillMaxSize()

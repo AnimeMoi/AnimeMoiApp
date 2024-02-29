@@ -14,7 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -24,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 @Composable
-fun TitleDetailComic(navController: NavHostController) {
+fun TitleDetailComic(title: String, navController: NavHostController) {
     Row(
         Modifier
             .background(
@@ -50,7 +49,7 @@ fun TitleDetailComic(navController: NavHostController) {
             modifier = Modifier.padding(start = 8.dp)
         ) {
             Text(
-                text = "Toàn chức pháp sư",
+                text = title,
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,

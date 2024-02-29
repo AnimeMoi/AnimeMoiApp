@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -17,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.animemoi_app.data.ComicDetailData
 import com.example.animemoi_app.model.ComicDetail
 import com.example.animemoi_app.model.ModeReader
@@ -37,7 +36,11 @@ fun ComicImage(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ImagesComicList(modeReader: ModeReader = ModeReader.Vertical) {
+fun ImagesComicList(
+    modeReader: ModeReader = ModeReader.Vertical,
+    navController: NavHostController,
+    title: String
+) {
     val imageList = ComicDetailData().loadComicDetail()
     if (modeReader == ModeReader.Vertical) {
         LazyVerticalGrid(
@@ -49,7 +52,7 @@ fun ImagesComicList(modeReader: ModeReader = ModeReader.Vertical) {
                 ComicImage(comicDetail = img)
             }
             item {
-                CommentDetailComic()
+                CommentDetailComic(navController, title)
             }
         }
     }
@@ -71,8 +74,3 @@ fun ImagesComicList(modeReader: ModeReader = ModeReader.Vertical) {
     }
 }
 
-@Preview
-@Composable
-fun Preview() {
-    ImagesComicList(ModeReader.Horizontal)
-}

@@ -29,6 +29,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.animemoi_app.common.navigation.AppDestinations.COMIC_DETAIL_ID_KEY
 import com.example.animemoi_app.screen.CategoryScreen
+import com.example.animemoi_app.screen.CommentScreen
 import com.example.animemoi_app.screen.DetailScreen
 import com.example.animemoi_app.screen.HistoryScreen
 import com.example.animemoi_app.screen.HomeScreen
@@ -153,9 +154,24 @@ fun AppNavigation() {
                 RegisterScreen(navController = navController)
             }
             composable(
-                route = Screens.ReadingScreen.name
+                route = "${Screens.ReadingScreen.name}/{TitleComic}",
             ) {
-                ReadingScreen(navController = navController)
+                val backStackEntry = navController.currentBackStackEntry
+
+                // Handle potential null case gracefully
+                val title = backStackEntry?.arguments?.getString("TitleComic") ?: ""
+
+                ReadingScreen(navController = navController, title = title)
+            }
+            composable(
+                route = "${Screens.CommentScreen.name}/{TitleComic}",
+            ) {
+                val backStackEntry = navController.currentBackStackEntry
+
+                // Handle potential null case gracefully
+                val title = backStackEntry?.arguments?.getString("TitleComic") ?: ""
+
+                CommentScreen(navController = navController, title = title)
             }
         }
     }

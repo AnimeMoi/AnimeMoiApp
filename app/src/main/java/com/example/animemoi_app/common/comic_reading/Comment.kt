@@ -39,9 +39,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.animemoi_app.R
 
 @Composable
@@ -55,7 +57,7 @@ fun CommentCard() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CommentDetailComic() {
+fun CommentDetailComic(navController: NavHostController, title: String) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -115,7 +117,15 @@ fun CommentDetailComic() {
                 color = Color.White,
                 fontSize = 18.sp
             )
-            Text(text = "Tổng 100 bình luận", color = Color.White)
+            Text(
+                text = "Tổng 100 bình luận",
+                color = Color(0xFFFF6666),
+                textDecoration = TextDecoration.Underline,
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate("CommentScreen/${title}")
+                    }
+                )
         }
         //Comment Card
         Card(
@@ -305,8 +315,3 @@ fun CommentDetailComic() {
     }
 }
 
-@Preview
-@Composable
-fun PreviewCommentComicDetail() {
-    CommentDetailComic()
-}

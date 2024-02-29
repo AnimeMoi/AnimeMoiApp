@@ -14,7 +14,7 @@ import com.example.animemoi_app.common.comic_reading.NavDetailComic
 import com.example.animemoi_app.common.comic_reading.TitleDetailComic
 
 @Composable
-fun ReadingScreen(navController: NavHostController) {
+fun ReadingScreen(navController: NavHostController, title: String) {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -24,8 +24,8 @@ fun ReadingScreen(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxHeight(0.9f)
         ){
-            ImagesComicList()
-            TitleDetailComic(navController)
+            ImagesComicList(navController= navController, title= title)
+            TitleDetailComic(title, navController)
         }
         NavDetailComic()
     }
