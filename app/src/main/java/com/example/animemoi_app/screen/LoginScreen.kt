@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Clear
-import androidx.compose.material.icons.rounded.RemoveRedEye
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.material3.Icon
@@ -42,9 +41,16 @@ import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.R
 import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.common.ComeBack
+import com.example.animemoi_app.data.User
+import com.example.animemoi_app.screen.setting.MessageDialog
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var showMessage by remember { mutableStateOf(false) }
+    val users = User().loadUser()
+
     Column(
         modifier = Modifier
             .background(Color.Black)
@@ -56,11 +62,32 @@ fun LoginScreen(navController: NavHostController) {
                 .padding(16.dp)
                 .fillMaxHeight(0.8f)
         ) {
-            TextFieldInput("Tên đăng nhập", Icons.Rounded.Clear, false)
-            TextFieldInput("Mật khẩu", Icons.Rounded.VisibilityOff, true)
+            TextFieldInput(
+                "Email",
+                Icons.Rounded.Clear,
+                false,
+                value = email
+            ) { enterEmail -> email = enterEmail }
+            TextFieldInput(
+                "Mật khẩu",
+                Icons.Rounded.VisibilityOff,
+                true,
+                value = password
+            ) { enter -> password = enter }
             ButtonCommon(
                 text = "Đăng nhập",
-                onClick = { /*TODO*/ },
+                onClick = {
+                    var isValid = false
+                    for (user in users) {
+                        if (user.email == email && user.password == password) {
+                            isValid = true
+                            navController.popBackStack()
+                        }
+                    }
+                    if (!isValid) {
+                        showMessage = true
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp, 8.dp)
@@ -97,9 +124,10 @@ fun LoginScreen(navController: NavHostController) {
 
         }
     }
+    if(showMessage)
+        MessageDialog(message = "Sai email hoặc mật khẩu", onExitClick = {showMessage = false})
 
 }
-
 @Composable
 fun LoginChoose() {
     Row(
@@ -154,8 +182,14 @@ fun TextAction() {
 }
 
 @Composable
-fun TextFieldInput(label: String, trailingIcon: ImageVector, password: Boolean) {
-    var userInput by remember { mutableStateOf("") }
+fun TextFieldInput(
+    label: String,
+    trailingIcon: ImageVector,
+    password: Boolean,
+    value: String,
+    onValueChange: (String) -> Unit
+) {
+    var userInput by remember { mutableStateOf(value) }
     var pass by remember {
         mutableStateOf(password)
     }
@@ -169,7 +203,10 @@ fun TextFieldInput(label: String, trailingIcon: ImageVector, password: Boolean) 
             modifier = Modifier
                 .fillMaxWidth(),
             value = userInput,
-            onValueChange = { value -> userInput = value },
+            onValueChange = {
+                userInput = it
+                onValueChange(it)
+            },
             placeholder = {
                 Text(
                     text = label,
@@ -207,5 +244,11 @@ fun TextFieldInput(label: String, trailingIcon: ImageVector, password: Boolean) 
             }
         )
     }
+}
+
+@Preview
+@Composable
+fun LoginPreview() {
+    LoginScreen(navController = rememberNavController())
 }
 
