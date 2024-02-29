@@ -15,3 +15,13 @@ enum class Screens {
     CommentScreen,
     SourceComicScreen,
 }
+
+// Define the routes where you want the NavigationBar to be visible
+val listOfRoutesToShowNavBar = listOf(
+    Screens.HomeScreen.name,
+    Screens.SearchScreen.name,
+    Screens.HistoryScreen.name,
+    Screens.SettingScreen.name,
+    Screens.NotificationScreen.name,
+    Screens.CategoryScreen.name
+)

@@ -38,43 +38,48 @@ private object AppDestinations {
 fun AppNavigation() {
     val navController: NavHostController = rememberNavController()
     val actions = remember(navController) { AppActions(navController) }
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+    val shouldShowNavBar = listOfRoutesToShowNavBar.contains(currentDestination?.route)
+
     Scaffold(bottomBar = {
-        NavigationBar(containerColor = Color.Black, modifier = Modifier
-            .background(Color.Black)
-            .graphicsLayer {
-                shape = RoundedCornerShape(
-                    topEnd = 10.dp, topStart = 10.dp
-                )
-                clip = true
-            }) {
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentDestination = navBackStackEntry?.destination
-            listOfNavItem.forEach { navItem ->
-                NavigationBarItem(selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
-                    onClick = {
-                        navController.navigate(navItem.route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                    },
-                    icon = {
-                        Icon(
-                            imageVector = navItem.icon,
-                            contentDescription = null,
-                            modifier = Modifier
-                                .padding(2.dp)
-                                .size(30.dp)// Thêm padding cho biểu tượng
-                        )
-                    },
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Color(0xFFFF6666),
-                        unselectedIconColor = Color.White,
-                        indicatorColor = Color.Transparent
+        if (shouldShowNavBar) {
+            NavigationBar(containerColor = Color.Black, modifier = Modifier
+                .background(Color.Black)
+                .graphicsLayer {
+                    shape = RoundedCornerShape(
+                        topEnd = 10.dp, topStart = 10.dp
                     )
-                )
+                    clip = true
+                }) {
+                listOfNavItem.forEach { navItem ->
+                    NavigationBarItem(selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
+                        onClick = {
+                            navController.navigate(navItem.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = navItem.icon,
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .padding(2.dp)
+                                    .size(30.dp)// Thêm padding cho biểu tượng
+                            )
+                        },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color(0xFFFF6666),
+                            unselectedIconColor = Color.White,
+                            indicatorColor = Color.Transparent
+                        )
+                    )
+                }
             }
         }
     }) { paddingValues: PaddingValues ->
@@ -101,10 +106,12 @@ fun AppNavigation() {
             composable(route = Screens.CategoryScreen.name) {
                 CategoryScreen(navController, selectedComic = actions.selectedComic)
             }
-            composable(route = "${Screens.DetailComicScreen.name}/{${COMIC_DETAIL_ID_KEY}}",
+            composable(
+                route = "${Screens.DetailComicScreen.name}/{${COMIC_DETAIL_ID_KEY}}",
                 arguments = listOf(navArgument(COMIC_DETAIL_ID_KEY) {
                     type = NavType.IntType
-                })) { backStackEntry ->
+                })
+            ) { backStackEntry ->
                 val arguments = requireNotNull(backStackEntry.arguments)
                 DetailScreen(
                     comicId = arguments.getInt(COMIC_DETAIL_ID_KEY), navigateUp = actions.navigateUp, navController
