@@ -30,8 +30,6 @@ fun NotificationScreen(
     val systemNotificationContent =
         "Hệ thống thông báo dừng hệ thống để nâng cấp vào lúc 22:00 ngày 21/1/2024. Mong quý khách có một trải nghiệm thú vị với phiên bản mới"
     val systemNotificationTimeUpdate = "22:00 21/1/2024"
-
-
     if (!isLogin) {
         Column(
             modifier = Modifier.fillMaxSize(),

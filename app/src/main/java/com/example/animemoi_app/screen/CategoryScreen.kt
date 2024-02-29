@@ -28,7 +28,7 @@ import com.example.animemoi_app.common.category_card.GridComic
 fun CategoryScreen(
     navController: NavHostController,
     selectedComic: (Int) -> Unit
-    ) {
+    ){
     Column(
         modifier = Modifier
             .fillMaxSize()

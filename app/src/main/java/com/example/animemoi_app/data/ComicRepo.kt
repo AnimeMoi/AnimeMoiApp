@@ -11,7 +11,6 @@ object ComicRepo {
     ): ComicTest = getComicsList(context).find{
         it.comicId == comicId
     }!!
-
     fun getComicsList(context: Context) = listOf(
         ComicTest(
             1,
