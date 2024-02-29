@@ -54,7 +54,7 @@ fun SearchScreen(navController: NavHostController) {
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        ComeBack(title = "Tìm kiếm", navController)
+        Bar(navController = navController)
         Spacer(modifier = Modifier.padding(8.dp))
         SearchBar()
         TextAndClear()
@@ -93,13 +93,18 @@ fun SearchScreen(navController: NavHostController) {
         )
         AuthorSearch()
         StatusComic(listOf("Tạm dừng", "Đang cập nhật", "Đã hoàn thành"))
-        ButtonCommon(
-            text = "Tìm kiếm",
-            onClick = { /*TODO*/ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        )
+        Row (
+            modifier = Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.Bottom
+        ) {
+            ButtonCommon(
+                text = "Tìm kiếm",
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+        }
     }
 }
 
