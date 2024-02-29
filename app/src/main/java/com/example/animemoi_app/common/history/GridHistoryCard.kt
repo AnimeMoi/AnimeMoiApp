@@ -35,12 +35,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.animemoi_app.common.comic.ComicColumn
 import com.example.animemoi_app.data.ComicRepo
 import com.example.animemoi_app.model.ComicTest
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
-@SuppressLint("UnrememberedMutableState")
+@SuppressLint("UnrememberedMutableState", "MutableCollectionMutableState")
 @Composable
 fun GridHistoryCard(
     showStatus: Boolean,
@@ -48,9 +53,7 @@ fun GridHistoryCard(
     selectedComic: (Int) -> Unit
 ) {
     val context = LocalContext.current
-    val comics: MutableList<ComicTest> = remember {
-        ComicRepo.getComicsList(context).toMutableList()
-    }
+    var comics by remember { mutableStateOf(ComicRepo.getComicsList(context).toMutableList()) }
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(20.dp),
         //horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -63,7 +66,7 @@ fun GridHistoryCard(
             SwipeToDeleteContainer(
                 item = comic,
                 onDelete = {
-                    comics -= comic
+                    comics = comics.filter { it.comicId != comic.comicId }.toMutableList()
                 }
             ) {
                 ComicColumn(
@@ -101,7 +104,7 @@ fun <T> SwipeToDeleteContainer(
 
     LaunchedEffect(key1 = isRemove) {
         if (isRemove) {
-            delay(animationDurarion.toLong())
+            delay(animationDurarion.toDuration(DurationUnit.MILLISECONDS))
             onDelete(item)
         }
     }
@@ -139,6 +142,7 @@ fun DeleteBackGround(
     ) {
         Color.Red
     } else Color.Transparent
+
     Box(
         modifier = Modifier
             .fillMaxSize()
