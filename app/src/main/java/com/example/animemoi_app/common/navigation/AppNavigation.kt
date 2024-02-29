@@ -105,13 +105,13 @@ fun AppNavigation() {
                 SearchScreen(navController)
             }
             composable(route = Screens.HistoryScreen.name) {
-                HistoryScreen(navController)
+                HistoryScreen(navController, selectedComic = actions.selectedComic)
             }
             composable(route = Screens.SettingScreen.name) {
                 SettingScreen(navController)
             }
             composable(route = Screens.NotificationScreen.name) {
-                NotificationScreen(navController)
+                NotificationScreen(navController, selectedComic = actions.selectedComic)
             }
             composable(route = Screens.CategoryScreen.name) {
                 CategoryScreen(navController, selectedComic = actions.selectedComic)

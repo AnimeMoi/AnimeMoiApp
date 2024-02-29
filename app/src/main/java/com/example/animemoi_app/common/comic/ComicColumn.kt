@@ -1,6 +1,7 @@
 package com.example.animemoi_app.common.comic
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,16 +27,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.animemoi_app.R
 import com.example.animemoi_app.model.Comic
+import com.example.animemoi_app.model.ComicTest
 
 @Composable
 fun ComicColumn(
-    comic: Comic, showStatus: Boolean, showLastTimeUpdate: Boolean
+    comic: ComicTest,
+    showStatus: Boolean,
+    showLastTimeUpdate: Boolean,
+    selectedComic: (Int) -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(90.dp)
-            .padding(horizontal = 15.dp),
+            .padding(horizontal = 15.dp)
+            .clickable {
+                       selectedComic(comic.comicId)
+            },
         elevation = CardDefaults.cardElevation(10.dp),
         colors = CardDefaults.cardColors(containerColor = Color.Transparent),
         shape = RoundedCornerShape(5.dp)

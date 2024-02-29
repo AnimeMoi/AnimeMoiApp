@@ -1,5 +1,6 @@
 package com.example.animemoi_app.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -20,14 +21,16 @@ import com.example.animemoi_app.common.ComeBack
 import com.example.animemoi_app.common.history.GridHistoryCard
 
 @Composable
-fun NotificationScreen(navController: NavHostController) {
+fun NotificationScreen(
+    navController: NavHostController,
+    selectedComic: (Int) -> Unit
+) {
     val isLogin = true
     val systemNotification = true
     val systemNotificationContent =
         "Hệ thống thông báo dừng hệ thống để nâng cấp vào lúc 22:00 ngày 21/1/2024. Mong quý khách có một trải nghiệm thú vị với phiên bản mới"
     val systemNotificationTimeUpdate = "22:00 21/1/2024"
 
-    ComeBack(title = "Thông báo", navController)
 
     if (!isLogin) {
         Column(
@@ -35,6 +38,8 @@ fun NotificationScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
+            ComeBack(title = "Thông báo", navController)
+
             Icon(
                 painter = painterResource(id = R.drawable.bell), contentDescription = null, Modifier.size(60.dp)
             )
@@ -46,9 +51,14 @@ fun NotificationScreen(navController: NavHostController) {
             )
         }
     } else {
-        Column {
+        Column (
+            modifier = Modifier.background(Color.Black)
+        ){
+            ComeBack(title = "Thông báo", navController)
             if (systemNotification) {
-                Column(Modifier.padding(start = 12.dp, top = 48.dp, end = 0.dp, bottom = 0.dp)) {
+                Column(Modifier
+                    .padding(start = 12.dp, top = 48.dp, end = 0.dp, bottom = 0.dp)
+                ) {
                     Text(
                         systemNotificationContent,
                         color = Color.White,
@@ -62,7 +72,7 @@ fun NotificationScreen(navController: NavHostController) {
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))
-            GridHistoryCard(showStatus = false, showLastTimeUpdate = true)
+            GridHistoryCard(showStatus = false, showLastTimeUpdate = true, selectedComic = selectedComic)
         }
     }
 }
@@ -71,5 +81,5 @@ fun NotificationScreen(navController: NavHostController) {
 @Composable
 fun NotificationScreenPreview() {
     val navController: NavHostController = rememberNavController()
-    NotificationScreen(navController)
+    NotificationScreen(navController, selectedComic = {})
 }
