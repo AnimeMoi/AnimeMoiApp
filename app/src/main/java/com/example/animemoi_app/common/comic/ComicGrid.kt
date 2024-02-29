@@ -11,21 +11,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.animemoi_app.data.ComicData
 
 @Composable
 fun ComicGrid() {
-    val comics = (1..10).toList();
+    val comics = ComicData().loadComicCard()
 
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(12.dp),
         columns = GridCells.Adaptive(minSize = 128.dp),
     ) {
-        items(comics) { _ ->
+        items(comics) { comic ->
             Box(modifier = Modifier.padding(8.dp)) {
                 Comic(
-                    imageUrl = "https://www.nettruyenup.vn/images/comics/gia-toc-diep-vien-yozakura.jpg",
-                    name = "Truyện",
+                    name = comic.stringResourceId,
+                    image = comic.imageResourceId,
                     moreInfo = true
                 )
             }
