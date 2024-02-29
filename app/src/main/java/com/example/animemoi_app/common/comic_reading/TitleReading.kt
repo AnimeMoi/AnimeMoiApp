@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -29,25 +30,24 @@ fun TitleDetailComic() {
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(0.dp)
-    ){
+    ) {
         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null, tint = Color.White)
-        Column (
-
-        ){
+        Column(
+            modifier = Modifier.padding(start = 8.dp)
+        ) {
             Text(
                 text = "Toàn chức pháp sư",
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-
-            )
+                )
             Text(
                 text = "Chương 1124: Chiến đấu với thái thản cự nhân",
                 color = Color.White,
                 fontSize = 12.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Clip
-                )
+            )
         }
     }
 }

@@ -19,20 +19,20 @@ fun ComicImage(
 ) {
     Image(painterResource(id = comicDetail.imageResourceId), null)
 }
+
 @Composable
 fun ImagesComicList() {
     LazyVerticalGrid(
         columns = GridCells.Fixed(1),
         //horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(vertical = 20.dp)){
+        modifier = Modifier.padding(vertical = 20.dp)
+    ) {
         val imageList = ComicDetailData().loadComicDetail()
         items(imageList) { img ->
             ComicImage(comicDetail = img)
         }
         item {
             CommentDetailComic()
-        }
-        item {
             NavDetailComic()
         }
     }
