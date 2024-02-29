@@ -9,7 +9,9 @@ import androidx.compose.ui.unit.dp
 import com.example.animemoi_app.data.ComicData
 
 @Composable
-fun ComicRow() {
+fun ComicRow(
+    selectedComic: (Int) -> Unit
+) {
     val listComic = ComicData().loadComicCard()
 
     LazyRow(
@@ -17,9 +19,9 @@ fun ComicRow() {
     ) {
         items(listComic) { comic ->
             Comic(
-                name = comic.stringResourceId,
-                image = comic.imageResourceId,
-                moreInfo = false
+                moreInfo = true,
+                comic = comic,
+                selectedComic = selectedComic
             )
         }
     }

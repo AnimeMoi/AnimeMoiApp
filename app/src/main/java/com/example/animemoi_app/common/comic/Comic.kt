@@ -2,11 +2,11 @@ package com.example.animemoi_app.common.comic
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -24,18 +24,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
+import com.example.animemoi_app.model.Comic
 
-@Composable
+/*@Composable
 fun Comic(
     image: String,
     name: String,
@@ -137,16 +133,16 @@ fun Comic(
             textAlign = TextAlign.Center
         )
     }
-}
+}*/
 
 @Composable
 fun Comic(
-    image: Int,
-    name: Int,
     moreInfo: Boolean,
     star: Float = 4.5F,
     views: Int = 0,
-    follow: Int = 0
+    follow: Int = 0,
+    comic: Comic,
+    selectedComic: (Int) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -160,13 +156,16 @@ fun Comic(
             ),
             modifier = Modifier
                 .fillMaxWidth()
+                .clickable {
+                    selectedComic(comic.comicId)
+                }
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.BottomCenter
             ) {
                 Image(
-                    painterResource(image), contentDescription = null,
+                    painterResource(comic.imageResourceId), contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .width(150.dp)
@@ -228,7 +227,7 @@ fun Comic(
 
         }
         Text(
-            text = stringResource(name),
+            text = stringResource(comic.stringResourceId),
             color = Color.White,
             modifier = Modifier
                 .background(Color.Transparent)
@@ -238,16 +237,4 @@ fun Comic(
             maxLines = 1,
         )
     }
-}
-
-@Preview
-@Composable
-fun ComicPreview() {
-    Comic(
-        "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
-        moreInfo = true,
-        name = "Test2",
-        views = 1,
-        follow = 60
-    )
 }

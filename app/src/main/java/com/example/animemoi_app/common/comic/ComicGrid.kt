@@ -14,7 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.example.animemoi_app.data.ComicData
 
 @Composable
-fun ComicGrid() {
+fun ComicGrid(
+    selectedComic: (Int) -> Unit
+) {
     val comics = ComicData().loadComicCard()
 
     LazyVerticalGrid(
@@ -25,17 +27,12 @@ fun ComicGrid() {
         items(comics) { comic ->
             Box(modifier = Modifier.padding(8.dp)) {
                 Comic(
-                    name = comic.stringResourceId,
-                    image = comic.imageResourceId,
-                    moreInfo = true
+                    moreInfo = true,
+                    comic = comic,
+                    selectedComic = selectedComic
                 )
             }
         }
     }
 }
 
-@Preview
-@Composable
-fun ComicGridPreview() {
-    ComicGrid()
-}

@@ -22,7 +22,8 @@ import com.example.animemoi_app.common.navigation.Screens
 fun ComicRowWithTitle(
     title: String,
     modifier: Modifier = Modifier,
-    navController: NavHostController
+    navController: NavHostController,
+    selectedComic: (Int) -> Unit
 ) {
     Column {
         Row(
@@ -46,7 +47,7 @@ fun ComicRowWithTitle(
                     }
             )
         }
-        ComicRow()
+        ComicRow(selectedComic)
     }
 }
 

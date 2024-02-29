@@ -10,9 +10,11 @@ import com.example.animemoi_app.common.ComeBack
 import com.example.animemoi_app.common.comic.ComicGrid
 
 @Composable
-fun SearchResultScreen(navController: NavHostController) {
+fun SearchResultScreen(
+    navController: NavHostController,
+    selectedComic: (Int) -> Unit) {
     ComeBack(title = "Kết quả", navController)
     Spacer(modifier = Modifier.height(16.dp))
-    ComicGrid()
+    ComicGrid(selectedComic)
 }
 

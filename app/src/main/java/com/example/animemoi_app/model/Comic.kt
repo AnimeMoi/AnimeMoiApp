@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 data class Comic(
+    val comicId : Int,
     @StringRes val stringResourceId: Int,
     @DrawableRes val imageResourceId: Int,
     @StringRes val categoryResourceId: Int,

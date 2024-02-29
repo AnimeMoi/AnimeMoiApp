@@ -14,7 +14,11 @@ import com.example.animemoi_app.common.comic.ComicRow
 import com.example.animemoi_app.common.comic.ComicRowWithTitle
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(
+    navController: NavHostController,
+    selectedComic: (Int) -> Unit,
+
+    ) {
     val sources = listOf("NetTruyen", "BaoTangTruyen", "Yurineko")
     Column(
         modifier = Modifier
@@ -23,11 +27,11 @@ fun HomeScreen(navController: NavHostController) {
         Bar(navController)
         ListSourceComic(sources)
         Column(Modifier.verticalScroll(rememberScrollState())) {
-            ComicRow()
-            ComicRowWithTitle(title = "Truyện mới đăng", navController = navController)
-            ComicRowWithTitle(title = "Truyện hay", navController = navController)
-            ComicRowWithTitle(title = "Truyện mới cập nhật", navController = navController)
-            ComicRowWithTitle(title = "Truyện đầy đủ", navController = navController)
+            ComicRow(selectedComic)
+            ComicRowWithTitle(title = "Truyện mới đăng", navController = navController, selectedComic = selectedComic)
+            ComicRowWithTitle(title = "Truyện hay", navController = navController, selectedComic = selectedComic)
+            ComicRowWithTitle(title = "Truyện mới cập nhật", navController = navController, selectedComic = selectedComic)
+            ComicRowWithTitle(title = "Truyện đầy đủ", navController = navController, selectedComic = selectedComic)
         }
     }
 }

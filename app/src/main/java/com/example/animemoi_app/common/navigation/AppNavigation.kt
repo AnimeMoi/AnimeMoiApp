@@ -99,7 +99,7 @@ fun AppNavigation() {
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(route = Screens.HomeScreen.name) {
-                HomeScreen(navController)
+                HomeScreen(navController, selectedComic = actions.selectedComic)
             }
             composable(route = Screens.SearchScreen.name) {
                 SearchScreen(navController)
@@ -138,7 +138,7 @@ fun AppNavigation() {
                 // Handle potential null case gracefully
                 val title = backStackEntry?.arguments?.getString("TitleScreen") ?: ""
 
-                MoreComicScreen(title, navController = navController)
+                MoreComicScreen(title, navController = navController, selectedComic = actions.selectedComic)
             }
             composable(
                 route = Screens.LoginScreen.name
