@@ -42,7 +42,7 @@ fun ComicRowWithTitle(
                 modifier = modifier
                     .padding(start = 0.dp, top = 8.dp, end = 16.dp, bottom = 8.dp)
                     .clickable {
-                        navController.navigate(Screens.MoreComicScreen.name)
+                        navController.navigate("${Screens.MoreComicScreen.name}/${title}")
                     }
             )
         }

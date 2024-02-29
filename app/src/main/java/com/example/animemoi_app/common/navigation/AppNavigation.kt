@@ -119,30 +119,35 @@ fun AppNavigation() {
             composable(
                 route = "${Screens.DetailComicScreen.name}/{${COMIC_DETAIL_ID_KEY}}",
                 arguments = listOf(
-                    navArgument(COMIC_DETAIL_ID_KEY){
+                    navArgument(COMIC_DETAIL_ID_KEY) {
                         type = NavType.IntType
                     }
                 )
-            ) {backStackEntry ->
-               val arguments = requireNotNull(backStackEntry.arguments)
+            ) { backStackEntry ->
+                val arguments = requireNotNull(backStackEntry.arguments)
                 DetailScreen(
                     comicId = arguments.getInt(COMIC_DETAIL_ID_KEY),
                     navigateUp = actions.navigateUp
                 )
             }
             composable(
-                route = Screens.MoreComicScreen.name
-            ){
-                MoreComicScreen(navController = navController)
+                route = "${Screens.MoreComicScreen.name}/{TitleScreen}",
+            ) {
+                val backStackEntry = navController.currentBackStackEntry
+
+                // Handle potential null case gracefully
+                val title = backStackEntry?.arguments?.getString("TitleScreen") ?: ""
+
+                MoreComicScreen(title, navController = navController)
             }
             composable(
                 route = Screens.LoginScreen.name
-            ){
+            ) {
                 LoginScreen(navController = navController)
             }
             composable(
                 route = Screens.RegisterScreen.name
-            ){
+            ) {
                 RegisterScreen(navController = navController)
             }
         }
