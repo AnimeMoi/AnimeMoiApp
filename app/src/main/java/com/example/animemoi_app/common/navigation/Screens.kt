@@ -13,4 +13,5 @@ enum class Screens {
     RegisterScreen,
     ReadingScreen,
     CommentScreen,
+    SourceComicScreen,
 }

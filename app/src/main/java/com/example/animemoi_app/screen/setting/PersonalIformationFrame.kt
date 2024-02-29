@@ -38,7 +38,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.animemoi_app.common.ButtonCommon
-import com.example.animemoi_app.screen.UserData
+import com.example.animemoi_app.model.UserData
 
 @Composable
 fun PersonalInformation(user: UserData) {
@@ -66,14 +66,11 @@ fun PersonalInformation(user: UserData) {
                 tint = Color(0xFFFF6666)
             )
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth(0.3f),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier.fillMaxWidth(0.3f), horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
                         painter = user.image,
@@ -92,8 +89,7 @@ fun PersonalInformation(user: UserData) {
                     Row {
                         Column {
                             Text(
-                                text = "Biệt danh: ",
-                                color = Color.White
+                                text = "Biệt danh: ", color = Color.White
                             )
                             Text(
                                 text = "Mật khẩu: ",
@@ -102,8 +98,7 @@ fun PersonalInformation(user: UserData) {
                             )
                         }
                         Column(
-                            modifier = Modifier
-                                .fillMaxWidth(0.9f),
+                            modifier = Modifier.fillMaxWidth(0.9f),
                         ) {
                             Text(
                                 text = user.name,
@@ -132,10 +127,9 @@ fun PersonalInformation(user: UserData) {
                             Icon(
                                 if (showPassword) Icons.Outlined.Visibility else Icons.Outlined.VisibilityOff,
                                 contentDescription = "",
-                                modifier = Modifier
-                                    .clickable {
-                                        showPassword = !showPassword
-                                    },
+                                modifier = Modifier.clickable {
+                                    showPassword = !showPassword
+                                },
                                 tint = Color(0xFFFF6666)
 
                             )
@@ -149,60 +143,50 @@ fun PersonalInformation(user: UserData) {
                     .padding(8.dp, 16.dp, 8.dp, 8.dp)
             ) {
                 Column(
-                    modifier = Modifier.fillMaxWidth(0.5f),
-                    horizontalAlignment = Alignment.Start
+                    modifier = Modifier.fillMaxWidth(0.5f), horizontalAlignment = Alignment.Start
                 ) {
                     ButtonCommon(
-                        text = "Xóa tài khoản",
-                        onClick = { /*TODO*/ },
-                        modifier = Modifier
+                        text = "Xóa tài khoản", onClick = { /*TODO*/ }, modifier = Modifier
                     )
                 }
                 Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.End
+                    modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End
                 ) {
                     ButtonCommon(
-                        text = "Đăng xuất",
-                        onClick = { /*TODO*/ },
-                        iconButton = Icons.Default.Logout
+                        text = "Đăng xuất", onClick = { /*TODO*/ }, iconButton = Icons.Default.Logout
                     )
                 }
             }
         }
         if (isEditing) {
-            EditDialog(
-                initialUserName = user.name,
-                onConfirmClick = { updateName, updatePassword, updatePassword2 ->
-                    when {
-                        updateName != "" && updateName != user.name && updatePassword != "" && updatePassword == updatePassword2 && updatePassword != user.password -> {
-                            user.name = updateName
-                            user.password = updatePassword
-                            messageVisible = true
-                            message = "Cập nhật thành công"
-                        }
-
-                        updateName != "" && updateName != user.name -> {
-                            user.name = updateName
-                            messageVisible = true
-                            message = "Đã cập nhật biệt danh"
-                        }
-
-                        updatePassword != "" && updatePassword == updatePassword2 && updatePassword != user.password -> {
-                            user.password = updatePassword
-                            messageVisible = true
-                            message = "Đã cập nhật mật khẩu mới"
-                        }
-
-                        else -> {
-                            messageVisible = true
-                            message = "Cập nhật thất bại"
-                        }
+            EditDialog(initialUserName = user.name, onConfirmClick = { updateName, updatePassword, updatePassword2 ->
+                when {
+                    updateName != "" && updateName != user.name && updatePassword != "" && updatePassword == updatePassword2 && updatePassword != user.password -> {
+                        user.name = updateName
+                        user.password = updatePassword
+                        messageVisible = true
+                        message = "Cập nhật thành công"
                     }
-                    isEditing = false
-                },
-                onExitClick = { isEditing = false }
-            )
+
+                    updateName != "" && updateName != user.name -> {
+                        user.name = updateName
+                        messageVisible = true
+                        message = "Đã cập nhật biệt danh"
+                    }
+
+                    updatePassword != "" && updatePassword == updatePassword2 && updatePassword != user.password -> {
+                        user.password = updatePassword
+                        messageVisible = true
+                        message = "Đã cập nhật mật khẩu mới"
+                    }
+
+                    else -> {
+                        messageVisible = true
+                        message = "Cập nhật thất bại"
+                    }
+                }
+                isEditing = false
+            }, onExitClick = { isEditing = false })
         }
         if (messageVisible) {
             MessageDialog(message = message, onExitClick = { messageVisible = false })

@@ -39,12 +39,10 @@ fun TitleDetailComic(title: String, navController: NavHostController) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(0.dp)
     ) {
-        Icon(
-            imageVector = Icons.Default.ArrowBack,
+        Icon(imageVector = Icons.Default.ArrowBack,
             contentDescription = null,
             tint = Color.White,
-            modifier = Modifier.clickable { navController.popBackStack() }
-        )
+            modifier = Modifier.clickable { navController.popBackStack() })
         Column(
             modifier = Modifier.padding(start = 8.dp)
         ) {

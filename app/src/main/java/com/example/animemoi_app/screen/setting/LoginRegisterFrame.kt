@@ -39,8 +39,7 @@ fun LoginRegisterFrame(navController: NavHostController) {
                     text = "Bạn cần đăng nhập để quản lí thông tin cũng như sử dụng những tính nằng đặc biệt của ứng dụng",
                     textAlign = TextAlign.Center,
                     color = Color.White,
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                 )
                 Row(
                     modifier = Modifier
@@ -48,18 +47,14 @@ fun LoginRegisterFrame(navController: NavHostController) {
                         .padding(0.dp, 16.dp, 0.dp, 0.dp)
                 ) {
                     Column(
-                        modifier = Modifier.fillMaxWidth(0.5f),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        modifier = Modifier.fillMaxWidth(0.5f), horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         ButtonCommon(
-                            text = "Đăng nhập",
-                            onClick = { navController.navigate("LoginScreen") },
-                            modifier = Modifier
+                            text = "Đăng nhập", onClick = { navController.navigate("LoginScreen") }, modifier = Modifier
                         )
                     }
                     Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         ButtonCommon(
                             text = "Đăng kí",
@@ -76,30 +71,23 @@ fun LoginRegisterFrame(navController: NavHostController) {
                         .fillMaxWidth()
                 )
                 Row(
-                    modifier = Modifier
-                        .padding(0.dp, 16.dp, 0.dp, 0.dp)
+                    modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)
                 ) {
-                    Image(
-                        painterResource(id = R.drawable.google),
+                    Image(painterResource(id = R.drawable.google),
                         contentDescription = "Google",
                         modifier = Modifier
                             .fillMaxWidth(0.3f)
-                            .clickable { }
-                    )
-                    Image(
-                        painterResource(id = R.drawable.facebook),
+                            .clickable { })
+                    Image(painterResource(id = R.drawable.facebook),
                         contentDescription = "Facebook",
                         modifier = Modifier
                             .fillMaxWidth(0.6f)
-                            .clickable { }
-                    )
-                    Image(
-                        painterResource(id = R.drawable.github),
+                            .clickable { })
+                    Image(painterResource(id = R.drawable.github),
                         contentDescription = "Github",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { }
-                    )
+                            .clickable { })
                 }
             }
         }

@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.R
 import com.example.animemoi_app.common.ComeBack
+import com.example.animemoi_app.model.UserData
 import com.example.animemoi_app.screen.setting.LoginRegisterFrame
 import com.example.animemoi_app.screen.setting.PersonalInformation
 import com.example.animemoi_app.screen.setting.SettingAppFrame
@@ -22,23 +23,19 @@ import com.example.animemoi_app.screen.setting.SettingSourceFrame
 @Composable
 fun SettingScreen(navController: NavHostController) {
     Column(
-        modifier = Modifier
-            .background(Color.Black)
+        modifier = Modifier.background(Color.Black)
     ) {
         ComeBack(title = "Cài đặt", navController)
-        Column (
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState())
         ) {
             PersonalInformation(
                 user = UserData(
-                    image = painterResource(id = R.drawable.deba),
-                    name = "Tuấn Kha",
-                    password = "TuanKha"
+                    image = painterResource(id = R.drawable.deba), name = "Tuấn Kha", password = "TuanKha"
                 )
             )
             LoginRegisterFrame(navController)
-            SettingSourceFrame()
+            SettingSourceFrame(navController)
             SettingAppFrame()
         }
     }
@@ -51,5 +48,3 @@ fun SettingScreenPreview() {
     SettingScreen(navController = rememberNavController())
 }
 
-data class UserData(val image: Painter, var name: String, var password: String)
-data class SourceData(val image: Painter, var name: String)

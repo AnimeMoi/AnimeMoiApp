@@ -2,16 +2,8 @@ package com.example.animemoi_app.screen.setting
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -31,10 +23,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.animemoi_app.R
+import com.example.animemoi_app.common.navigation.Screens
 import com.example.animemoi_app.common.setting.Input
 import com.example.animemoi_app.common.setting.TitleWithIcon
-import com.example.animemoi_app.screen.SourceData
+import com.example.animemoi_app.model.SourceData
 
 @Composable
 fun ListSource() {
@@ -47,8 +41,7 @@ fun ListSource() {
         GridCells.Fixed(1),
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier
-            .height(150.dp)
+        modifier = Modifier.height(150.dp)
     ) {
         items(listSource) { source ->
             Source(source = source)
@@ -62,33 +55,30 @@ fun Source(source: SourceData) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = source.image,
-            contentDescription = "Image",
-            Modifier.size(40.dp)
+            painter = source.image, contentDescription = "Image", Modifier.size(40.dp)
         )
         Text(
-            text = source.name,
-            color = Color.White,
-            modifier = Modifier
+            text = source.name, color = Color.White, modifier = Modifier
                 .padding(16.dp, 0.dp)
                 .fillMaxWidth(0.9f)
         )
         Icon(
-            imageVector = Icons.Default.Menu,
-            contentDescription = "Icon",
-            tint = Color.White
+            imageVector = Icons.Default.Menu, contentDescription = "Icon", tint = Color.White
         )
     }
 }
 
 @Composable
-fun SettingSourceFrame() {
+fun SettingSourceFrame(navController: NavHostController) {
     Box {
         Column(
             modifier = Modifier
                 .padding(16.dp, 0.dp, 16.dp, 16.dp)
                 .fillMaxWidth()
-                .background(Color(0xFF4D4D4D), RoundedCornerShape(10.dp))
+                .background(
+                    Color(0xFF4D4D4D),
+                    RoundedCornerShape(10.dp)
+                )
         ) {
             Column(
                 modifier = Modifier
@@ -100,8 +90,7 @@ fun SettingSourceFrame() {
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = Color.White,
-                    modifier = Modifier
-                        .padding(0.dp, 0.dp, 8.dp, 0.dp)
+                    modifier = Modifier.padding(end = 8.dp)
                 )
                 Input(text = "NSFW", true)
                 Column(
@@ -110,13 +99,15 @@ fun SettingSourceFrame() {
                         .background(Color(0f, 0f, 0f, 0.5f), RoundedCornerShape(10.dp))
                 ) {
                     TitleWithIcon(
-                        title = "Nguồn truyện của bạn",
-                        icon = Icons.Default.KeyboardArrowUp
+                        title = "Nguồn truyện của bạn", icon = Icons.Default.KeyboardArrowUp
                     )
                     Box {
                         Divider(color = Color(0xFF808080), modifier = Modifier.padding(8.dp))
                     }
-                    TitleWithIcon(title = "Thêm nguồn mới", icon = Icons.Default.Add)
+                    TitleWithIcon(title = "Thêm nguồn mới", icon = Icons.Default.Add,
+                        modifier = Modifier.clickable {
+                            navController.navigate(Screens.SourceComicScreen.name)
+                        })
                     ListSource()
                 }
             }

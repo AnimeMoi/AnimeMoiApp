@@ -23,9 +23,7 @@ import com.example.animemoi_app.model.ComicTest
 
 @Composable
 fun DetailScreen(
-    comicId : Int,
-    navigateUp: () ->Unit,
-    navController: NavHostController
+    comicId: Int, navigateUp: () -> Unit, navController: NavHostController
 ) {
     val context = LocalContext.current
     val comic: ComicTest = remember(comicId) {
@@ -36,16 +34,15 @@ fun DetailScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-    ){
-        TitleDetail(comic.imageResourceId,comic.stringResourceId,navigateUp)
+    ) {
+        TitleDetail(comic.imageResourceId, comic.stringResourceId, navigateUp)
         VoteComicDetail()
         NavComicDetail(titleComic, navController)
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-
             InformationComicDetail()
             ChapterListDetail()
         }

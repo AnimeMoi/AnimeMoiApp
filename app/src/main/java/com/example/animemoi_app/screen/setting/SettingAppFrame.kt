@@ -46,8 +46,7 @@ fun SettingAppFrame() {
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = Color.White,
-                    modifier = Modifier
-                        .padding(0.dp, 0.dp, 8.dp, 0.dp)
+                    modifier = Modifier.padding(0.dp, 0.dp, 8.dp, 0.dp)
                 )
                 InputIcon(text = "Chọn màu nền", icon = painterResource(id = R.drawable.color))
                 InputListChoose(

@@ -47,7 +47,6 @@ fun ComeBack(title: String, navController : NavController) {
                 contentDescription = title,
                 modifier = Modifier
                     .background(Color.Black),
-
                 )
         }
         Text(
