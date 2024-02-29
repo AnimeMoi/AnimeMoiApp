@@ -22,25 +22,38 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun NavDetailComic() {
-    Row (
-        modifier = Modifier.fillMaxWidth()
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(horizontal = 15.dp),
         horizontalArrangement = Arrangement.SpaceBetween
-    ){
+    ) {
         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null, tint = Color.White)
         Icon(imageVector = Icons.Default.SyncAlt, contentDescription = null, tint = Color.White)
-        Row(){
-            Icon(imageVector = Icons.Default.ArrowBackIos, contentDescription = null, tint = Color.White)
-            Text(text = "1" , color = Color.White)
-            Icon(imageVector = Icons.Default.Minimize, contentDescription = null, tint = Color.White)
+        Row() {
+            Icon(
+                imageVector = Icons.Default.ArrowBackIos,
+                contentDescription = null,
+                tint = Color.White
+            )
+            Text(text = "1", color = Color.White)
+            Icon(
+                imageVector = Icons.Default.Minimize,
+                contentDescription = null,
+                tint = Color.White
+            )
             Text(text = "10", color = Color.White)
-            Icon(imageVector = Icons.Default.ArrowForwardIos, contentDescription = null, tint = Color.White)
+            Icon(
+                imageVector = Icons.Default.ArrowForwardIos,
+                contentDescription = null,
+                tint = Color.White
+            )
         }
         Icon(imageVector = Icons.Default.Warning, contentDescription = null, tint = Color.White)
         Icon(imageVector = Icons.Default.Settings, contentDescription = null, tint = Color.White)
-
     }
 }
+
 @Preview
 @Composable
 fun PreviewNavDetail() {

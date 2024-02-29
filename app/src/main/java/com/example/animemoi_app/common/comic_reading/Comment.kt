@@ -56,7 +56,6 @@ fun CommentCard() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommentDetailComic() {
-
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -64,7 +63,7 @@ fun CommentDetailComic() {
         colors = CardDefaults.cardColors(Color(0xFF444242))
 
     ) {
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
@@ -72,11 +71,11 @@ fun CommentDetailComic() {
                     vertical = 15.dp
                 ),
             horizontalArrangement = Arrangement.SpaceBetween,
-        ){
+        ) {
             //Like
-            Column (
+            Column(
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
+            ) {
                 Icon(
                     imageVector = Icons.Default.ThumbUp,
                     contentDescription = null,
@@ -87,9 +86,9 @@ fun CommentDetailComic() {
 
             }
             //Add to library
-            Column (
+            Column(
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
+            ) {
                 Icon(
                     imageVector = Icons.Default.Bookmark,
                     contentDescription = null,
@@ -104,29 +103,30 @@ fun CommentDetailComic() {
                 .padding(horizontal = 15.dp, vertical = 15.dp)
         )
         //Headline
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 15.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Text(
                 text = "Bình luận nổi bật",
                 color = Color.White,
-                fontSize = 18.sp)
+                fontSize = 18.sp
+            )
             Text(text = "Tổng 100 bình luận", color = Color.White)
         }
         //Comment Card
-        Card (
+        Card(
             modifier = Modifier
                 .padding(15.dp),
             colors = CardDefaults.cardColors(Color.Transparent)
-        ){
-            Row (
+        ) {
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(15.dp)
-            ){
+            ) {
                 Image(
                     painter = painterResource(id = R.drawable.deba),
                     contentDescription = null,
@@ -136,9 +136,9 @@ fun CommentDetailComic() {
                         .clip(CircleShape)
                         .background(Color.Red)
                 )
-                Column (
+                Column(
                     verticalArrangement = Arrangement.spacedBy(5.dp)
-                ){
+                ) {
                     Text(
                         text = "Lê Tuấn Kha",
                         color = Color.White,
@@ -149,34 +149,51 @@ fun CommentDetailComic() {
                         color = Color.White,
                         fontWeight = FontWeight.Light,
                     )
-                    Row (
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
-                    ){
-                        Text(text = "22 giờ trước", color = Color.White, fontWeight = FontWeight.Light)
-                        Row (
+                    ) {
+                        Text(
+                            text = "22 giờ trước",
+                            color = Color.White,
+                            fontWeight = FontWeight.Light
+                        )
+                        Row(
 
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
-                        ){
-                            Icon(imageVector = Icons.Default.MoreVert, contentDescription = null, tint = Color(0xFFC2C2C2))
-                            Icon(imageVector = Icons.Default.Comment, contentDescription = null, tint = Color(0xFFC2C2C2), modifier = Modifier.padding(end = 5.dp))
-                            Icon(imageVector = Icons.Default.ThumbUp, contentDescription = null, tint = Color(0xFFC2C2C2))
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.MoreVert,
+                                contentDescription = null,
+                                tint = Color(0xFFC2C2C2)
+                            )
+                            Icon(
+                                imageVector = Icons.Default.Comment,
+                                contentDescription = null,
+                                tint = Color(0xFFC2C2C2),
+                                modifier = Modifier.padding(end = 5.dp)
+                            )
+                            Icon(
+                                imageVector = Icons.Default.ThumbUp,
+                                contentDescription = null,
+                                tint = Color(0xFFC2C2C2)
+                            )
                         }
                     }
                 }
             }
         }
-        Card (
+        Card(
             modifier = Modifier
                 .padding(15.dp),
             colors = CardDefaults.cardColors(Color.Transparent)
-        ){
-            Row (
+        ) {
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(15.dp)
-            ){
+            ) {
                 Image(
                     painter = painterResource(id = R.drawable.deba),
                     contentDescription = null,
@@ -186,9 +203,9 @@ fun CommentDetailComic() {
                         .clip(CircleShape)
                         .background(Color.Red)
                 )
-                Column (
+                Column(
                     verticalArrangement = Arrangement.spacedBy(5.dp)
-                ){
+                ) {
                     Text(
                         text = "Lê Tuấn Kha",
                         color = Color.White,
@@ -199,33 +216,49 @@ fun CommentDetailComic() {
                         color = Color.White,
                         fontWeight = FontWeight.Light,
                     )
-                    Row (
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
-                    ){
-                        Text(text = "22 giờ trước", color = Color.White, fontWeight = FontWeight.Light)
-                        Row (
+                    ) {
+                        Text(
+                            text = "22 giờ trước",
+                            color = Color.White,
+                            fontWeight = FontWeight.Light
+                        )
+                        Row(
 
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
-                        ){
-                            Icon(imageVector = Icons.Default.MoreVert, contentDescription = null, tint = Color(0xFFC2C2C2))
-                            Icon(imageVector = Icons.Default.Comment, contentDescription = null, tint = Color(0xFFC2C2C2), modifier = Modifier.padding(end = 5.dp))
-                            Icon(imageVector = Icons.Default.ThumbUp, contentDescription = null, tint = Color(0xFFC2C2C2))
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.MoreVert,
+                                contentDescription = null,
+                                tint = Color(0xFFC2C2C2)
+                            )
+                            Icon(
+                                imageVector = Icons.Default.Comment,
+                                contentDescription = null,
+                                tint = Color(0xFFC2C2C2),
+                                modifier = Modifier.padding(end = 5.dp)
+                            )
+                            Icon(
+                                imageVector = Icons.Default.ThumbUp,
+                                contentDescription = null,
+                                tint = Color(0xFFC2C2C2)
+                            )
                         }
                     }
                 }
             }
         }
         //Comment TextBox
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 15.dp, vertical = 20.dp)
-                ,
+                .padding(horizontal = 15.dp, vertical = 20.dp),
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
 
             Image(
                 painter = painterResource(id = R.drawable.deba),
@@ -241,7 +274,7 @@ fun CommentDetailComic() {
             }
             OutlinedTextField(
                 value = text,
-                onValueChange = {text = it},
+                onValueChange = { text = it },
                 label = null,
                 placeholder = {
                     Text(text = "Viết gì đó", fontSize = 10.sp)
@@ -264,7 +297,7 @@ fun CommentDetailComic() {
                 imageVector = Icons.Default.Send,
                 contentDescription = null,
                 tint = Color.White,
-                modifier = Modifier.clickable {  }
+                modifier = Modifier.clickable { }
             )
 
         }
