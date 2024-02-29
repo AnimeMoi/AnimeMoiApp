@@ -4,14 +4,9 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -51,14 +46,18 @@ fun SearchBar() {
     val contextForToast = LocalContext.current.applicationContext
     //previous search terms
     val historyItems = remember {
-        mutableStateListOf("SemicolonSpace", "Jetpack Compose", "Android")
+        mutableStateListOf("Toàn chức pháp sư", "Tu tiên truyện", "Xuyên không về thời cổ đại")
     }
     SearchBar(
         modifier = Modifier
             .fillMaxWidth()
             .padding(1.dp)
             .background(Color.Black)
-            .border(0.5.dp, if (isActive) Color.Transparent else Color.White, RoundedCornerShape(50)),
+            .border(
+                0.5.dp,
+                if (isActive) Color.Transparent else Color.Gray,
+                CircleShape
+            ),
         query = queryString,
         onQueryChange = { newQueryString ->
             queryString = newQueryString
@@ -96,7 +95,13 @@ fun SearchBar() {
             }
         },
         colors = SearchBarDefaults.colors(
-            Color.Black, Color(0xFFFF6666), TextFieldDefaults.colors(Color.White)
+            containerColor = Color.Black,
+            dividerColor = Color(0xFFFF6666),
+            inputFieldColors = TextFieldDefaults.colors(
+                focusedTextColor = Color.White,
+                unfocusedTextColor = Color.White,
+                cursorColor = Color(0xFFFF6666)
+            )
         ),
         tonalElevation = 500.dp,
         content = {

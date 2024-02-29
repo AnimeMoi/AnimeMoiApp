@@ -29,16 +29,16 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,24 +49,19 @@ import com.example.animemoi_app.common.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(navController: NavHostController) {
+    var historyItems = remember {
+        mutableStateListOf("Toàn chức pháp sư", "Tu tiên truyện", "Xuyên không về thời cổ đại")
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        ComeBack(title = "Tìm kiếm", navController)
+        Bar(navController = navController)
         Spacer(modifier = Modifier.padding(8.dp))
         SearchBar()
-        TextAndClear()
-        ListPreviousSearch(
-            listOf(
-                "Toàn chức pháp sư",
-                "Tu tiên truyện",
-                "18+",
-                "Xuyên không về thời cổ đại",
-                "Bạch tuyết và bảy chú lùn"
-            )
-        )
+        TextAndClear(onClearClick = {historyItems.clear()})
+        ListPreviousSearch(historyItems)
         ListSourceComic(
             listOf(
                 "Nettruyen",
@@ -93,13 +88,18 @@ fun SearchScreen(navController: NavHostController) {
         )
         AuthorSearch()
         StatusComic(listOf("Tạm dừng", "Đang cập nhật", "Đã hoàn thành"))
-        ButtonCommon(
-            text = "Tìm kiếm",
-            onClick = { /*TODO*/ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        )
+        Row (
+            modifier = Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.Bottom
+        ) {
+            ButtonCommon(
+                text = "Tìm kiếm",
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+        }
     }
 }
 
@@ -289,7 +289,7 @@ fun PreviousSearch(search: String) {
 }
 
 @Composable
-fun TextAndClear() {
+fun TextAndClear(onClearClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -308,19 +308,12 @@ fun TextAndClear() {
             text = "Xóa tất cả",
             fontWeight = FontWeight.Medium,
             color = Color(0xFFFF6666),
+            textDecoration = TextDecoration.Underline,
             fontSize = 14.sp,
             modifier = Modifier
                 .align(Alignment.CenterEnd)
-                .drawBehind {
-                    drawLine(
-                        color = Color(0xFFFF6666),
-                        start = Offset(0f, size.height),
-                        end = Offset(size.width, size.height),
-                        strokeWidth = 1.dp.toPx()
-                    )
-                }
                 .clickable {
-
+                    onClearClick()
                 }
         )
     }
