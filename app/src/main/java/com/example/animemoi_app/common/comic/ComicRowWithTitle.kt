@@ -1,7 +1,11 @@
 package com.example.animemoi_app.common.comic
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Icon
@@ -12,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.animemoi_app.common.navigation.Screens
 
 @Composable
 fun ComicRowWithTitle(
@@ -37,7 +42,7 @@ fun ComicRowWithTitle(
                 modifier = modifier
                     .padding(start = 0.dp, top = 8.dp, end = 16.dp, bottom = 8.dp)
                     .clickable {
-                        navController.navigate("MoreComicScreen")
+                        navController.navigate(Screens.MoreComicScreen.name)
                     }
             )
         }

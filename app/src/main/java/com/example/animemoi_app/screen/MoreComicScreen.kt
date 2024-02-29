@@ -14,14 +14,13 @@ import com.example.animemoi_app.common.comic.ComicGrid
 
 @Composable
 fun MoreComicScreen(navController: NavController) {
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-    ){
-        ComeBack("Truyện mới đăng",navController)
+    ) {
+        ComeBack("Truyện mới đăng", navController)
         ComicGrid()
-
     }
 }
 
