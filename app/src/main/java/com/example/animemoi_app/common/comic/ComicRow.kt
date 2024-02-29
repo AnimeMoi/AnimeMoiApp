@@ -15,7 +15,7 @@ fun ComicRow() {
             Comic(
                 "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
                 moreInfo = true,
-                name = "Test",
+                name = "Truyện 1",
                 star = 3.3f,
                 views = 500,
                 follow = 600
@@ -24,7 +24,7 @@ fun ComicRow() {
             Comic(
                 "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
                 moreInfo = true,
-                name = "Test2",
+                name = "Truyện 2",
                 views = 1,
                 follow = 60
             )
@@ -32,7 +32,7 @@ fun ComicRow() {
             Comic(
                 "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
                 moreInfo = true,
-                name = "Test3",
+                name = "Truyện 3",
                 views = 503,
                 follow = 6
             )
@@ -40,13 +40,13 @@ fun ComicRow() {
             Comic(
                 "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
                 moreInfo = true,
-                name = "Test5",
+                name = "Truyện 4",
             )
             Spacer(modifier = Modifier.width(16.dp))
             Comic(
                 "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
                 moreInfo = true,
-                name = "Tes4",
+                name = "Truyện 5",
             )
         }
     }
