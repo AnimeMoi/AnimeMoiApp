@@ -31,6 +31,10 @@ import com.example.animemoi_app.common.ComeBack
 
 @Composable
 fun RegisterScreen(navController: NavHostController) {
+    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .background(Color.Black)
@@ -42,10 +46,30 @@ fun RegisterScreen(navController: NavHostController) {
                 .padding(16.dp)
                 .fillMaxHeight(0.9f)
         ) {
-            TextFieldInput("Tên đăng nhập", Icons.Rounded.Clear, false)
-            TextFieldInput("Email", Icons.Rounded.Clear, false)
-            TextFieldInput("Mật khẩu", Icons.Rounded.VisibilityOff, true)
-            TextFieldInput("Nhập lại mật khẩu", Icons.Rounded.VisibilityOff, true)
+            TextFieldInput(
+                "Biệt danh",
+                Icons.Rounded.Clear,
+                false,
+                value = name
+            ) { enter -> name = enter }
+            TextFieldInput(
+                "Email",
+                Icons.Rounded.Clear,
+                false,
+                value = email
+            ) { enter -> email  = enter }
+            TextFieldInput(
+                "Mật khẩu",
+                Icons.Rounded.VisibilityOff,
+                true,
+                value = password
+            ) { enter -> password = enter }
+            TextFieldInput(
+                "Nhập lại mật khẩu",
+                Icons.Rounded.VisibilityOff,
+                true,
+                value = confirmPassword
+            ) { enter -> confirmPassword = enter }
             ButtonCommon(
                 text = "Đăng kí",
                 onClick = { /*TODO*/ },
@@ -104,4 +128,10 @@ fun CheckAccept() {
                 .padding(16.dp, 16.dp)
         )
     }
+}
+
+@Preview
+@Composable
+fun RegisterPreview(){
+    RegisterScreen(navController = rememberNavController())
 }
