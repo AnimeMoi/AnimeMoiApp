@@ -2,7 +2,6 @@ package com.example.animemoi_app.common.comic_detail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -42,7 +41,7 @@ fun ChapterListDetail() {
     }
     Card(
         modifier = Modifier
-            .fillMaxSize()
+            .height(500.dp)
             .padding(5.dp, 15.dp, 5.dp, 5.dp),
         colors = CardDefaults.cardColors(Color(0xFF444242))
     ) {
@@ -98,36 +97,27 @@ fun ChapterListDetail() {
         )
         //ListChapterDetail
         LazyColumn {
-            item {
+            item () {
                 ListChapterDetail()
-            }
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
+                ListChapterDetail()
 
-            item {
-                ListChapterDetail()
-            }
-
-            item {
-                ListChapterDetail()
-            }
-
-            item {
-                ListChapterDetail()
-            }
-
-            item {
-                ListChapterDetail()
-            }
-
-            item {
-                ListChapterDetail()
-            }
-
-            item {
-                ListChapterDetail()
-            }
-
-            item {
-                ListChapterDetail()
             }
         }
     }

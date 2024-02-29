@@ -34,7 +34,7 @@ fun CategoryScreen(
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        val sources = listOf("Nettruyen", "BaoTangTruyen", "Yurineko", "Yurisneko")
+        val sources = listOf("Thiếu nhi", "Truyện tranh", "Trinh thám")
         Bar(navController)
         Box(modifier = Modifier.padding(top = 10.dp)) {
             SearchBar()

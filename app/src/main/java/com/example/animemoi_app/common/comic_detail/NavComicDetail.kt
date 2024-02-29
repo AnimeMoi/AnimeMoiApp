@@ -16,13 +16,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.animemoi_app.common.ButtonCommon
 import com.example.animemoi_app.common.ListSourceComic
 
 @Composable
-fun NavComicDetail() {
+fun NavComicDetail(navController: NavHostController) {
     Column {
         //Nav comic
         Row(
@@ -33,7 +33,7 @@ fun NavComicDetail() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             ButtonCommon(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("ReadingScreen") },
                 text = "Đọc",
                 iconButton = Icons.Default.MenuBook
             )
@@ -64,8 +64,3 @@ fun NavComicDetail() {
     }
 }
 
-@Preview
-@Composable
-fun PreviewNavComicDetail() {
-    NavComicDetail()
-}

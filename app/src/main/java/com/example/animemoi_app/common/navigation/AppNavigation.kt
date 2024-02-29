@@ -35,6 +35,7 @@ import com.example.animemoi_app.screen.HomeScreen
 import com.example.animemoi_app.screen.LoginScreen
 import com.example.animemoi_app.screen.MoreComicScreen
 import com.example.animemoi_app.screen.NotificationScreen
+import com.example.animemoi_app.screen.ReadingScreen
 import com.example.animemoi_app.screen.RegisterScreen
 import com.example.animemoi_app.screen.SearchScreen
 import com.example.animemoi_app.screen.SettingScreen
@@ -127,7 +128,8 @@ fun AppNavigation() {
                 val arguments = requireNotNull(backStackEntry.arguments)
                 DetailScreen(
                     comicId = arguments.getInt(COMIC_DETAIL_ID_KEY),
-                    navigateUp = actions.navigateUp
+                    navigateUp = actions.navigateUp,
+                    navController
                 )
             }
             composable(
@@ -149,6 +151,11 @@ fun AppNavigation() {
                 route = Screens.RegisterScreen.name
             ) {
                 RegisterScreen(navController = navController)
+            }
+            composable(
+                route = Screens.ReadingScreen.name
+            ) {
+                ReadingScreen(navController = navController)
             }
         }
     }
