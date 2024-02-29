@@ -1,52 +1,25 @@
 package com.example.animemoi_app.common.comic
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.animemoi_app.data.ComicData
 
 @Composable
 fun ComicRow() {
+    val listComic = ComicData().loadComicCard()
+
     LazyRow(
         modifier = Modifier.padding(16.dp)
     ) {
-        item {
+        items(listComic) { comic ->
             Comic(
-                "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
-                moreInfo = true,
-                name = "Truyện 1",
-                star = 3.3f,
-                views = 500,
-                follow = 600
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Comic(
-                "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
-                moreInfo = true,
-                name = "Truyện 2",
-                views = 1,
-                follow = 60
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Comic(
-                "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
-                moreInfo = true,
-                name = "Truyện 3",
-                views = 503,
-                follow = 6
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Comic(
-                "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
-                moreInfo = true,
-                name = "Truyện 4",
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Comic(
-                "https://www.nettruyenup.vn/images/comics/tho-san-hang-s-khong-muon-tro-thanh-ac-nu.jpg",
-                moreInfo = true,
-                name = "Truyện 5",
+                name = comic.stringResourceId,
+                image = comic.imageResourceId,
+                moreInfo = false
             )
         }
     }

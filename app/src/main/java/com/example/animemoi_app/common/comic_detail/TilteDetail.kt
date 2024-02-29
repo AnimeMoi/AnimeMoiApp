@@ -138,15 +138,11 @@ fun TitleDetail(
                             )
                             Text(text = "46k", color = Color.White)
                         }
-
                     }
-
                 }
-
             }
         }
     }
-
 }
 
 
