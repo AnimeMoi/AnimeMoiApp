@@ -13,20 +13,19 @@ import com.example.animemoi_app.common.ComeBack
 import com.example.animemoi_app.common.comic.ComicGrid
 
 @Composable
-fun MoreComicScreen(navController: NavController) {
-    Column (
+fun MoreComicScreen(title: String, navController: NavController) {
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-    ){
-        ComeBack("Truyện mới đăng",navController)
+    ) {
+        ComeBack(title, navController)
         ComicGrid()
-
     }
 }
 
 @Preview
 @Composable
 fun PreviewMoreComicScreen() {
-    MoreComicScreen(navController = rememberNavController())
+    MoreComicScreen("Help", navController = rememberNavController())
 }
