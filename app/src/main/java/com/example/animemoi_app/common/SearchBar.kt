@@ -46,7 +46,7 @@ fun SearchBar() {
     val contextForToast = LocalContext.current.applicationContext
     //previous search terms
     val historyItems = remember {
-        mutableStateListOf("SemicolonSpace", "Jetpack Compose", "Android")
+        mutableStateListOf("Toàn chức pháp sư", "Tu tiên truyện", "Xuyên không về thời cổ đại")
     }
     SearchBar(
         modifier = Modifier
