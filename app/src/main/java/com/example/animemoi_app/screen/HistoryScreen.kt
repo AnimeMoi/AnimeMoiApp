@@ -20,7 +20,8 @@ import com.example.animemoi_app.common.history.GridHistoryCard
 
 @Composable
 fun HistoryScreen(
-    navController: NavHostController, selectedComic: (Int) -> Unit
+    navController: NavHostController,
+    selectedComic: (Int) -> Unit
 ) {
     Column(
         modifier = Modifier

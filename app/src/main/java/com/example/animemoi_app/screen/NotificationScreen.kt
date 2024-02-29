@@ -50,7 +50,9 @@ fun NotificationScreen(
         }
     } else {
         Column (
-            modifier = Modifier.background(Color.Black)
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black)
         ){
             ComeBack(title = "Thông báo", navController)
             if (systemNotification) {

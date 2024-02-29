@@ -2,26 +2,30 @@ package com.example.animemoi_app.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Comment
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Send
-import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -34,127 +38,172 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.animemoi_app.R
 import com.example.animemoi_app.common.ComeBack
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommentScreen(title: String, navController: NavHostController, modifier: Modifier = Modifier) {
     var commentValue by remember { mutableStateOf("") }
 
     Column(
-        modifier = modifier.background(Color.Black)
+        modifier = modifier
+            .background(Color.Black)
+            .fillMaxSize()
+
     ) {
         ComeBack(title = title, navController = navController)
+
         Card(
             modifier = Modifier
                 .padding(12.dp)
-                .background(Color.Gray)
+                .fillMaxWidth()
+                .fillMaxHeight(0.85f),
+            colors = CardDefaults.cardColors(Color(0xFF444242))
         ) {
-            Row(
+            //titleRow
+            Row (
                 modifier = Modifier
-                    .background(Color.Gray)
                     .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    text = stringResource(id = R.string.comments), fontWeight = FontWeight.Bold
-                )
-                Text(text = stringResource(id = R.string.total_comments))
-            }
-            LazyColumn(
-                modifier = Modifier
-                    .background(Color.Gray)
-                    .padding(top = 12.dp)
-            ) {
-                items(5) { CommentItem() }
-            }
-        }
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Row(
-                modifier = Modifier.align(Alignment.BottomStart),
+                    .padding(10.dp, 10.dp, 10.dp, 0.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Box(
-                    modifier = Modifier.weight(1f) // Set weight for TextField
-                ) {
-                    TextField(value = commentValue, onValueChange = { value ->
-                        commentValue = value
-                    }, placeholder = {
-                        Text(
-                            text = "Viết gì đó",
-                            modifier = Modifier
-                                .padding(start = 8.dp)
-                                .background(Color.Black),
-                            color = Color.White
-                        )
-                    }, colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color.Black,
-                        unfocusedContainerColor = Color.Black,
-                        disabledContainerColor = Color.Black,
-                        unfocusedTextColor = Color.White,
-                        focusedTextColor = Color.White
-                    ), modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(60.dp))
+            ){
+                Text(
+                    text = "Bình luận nổi bật",
+                    color = Color.White,
+                    fontSize = 18.sp
                     )
-                }
-                Icon(
-                    Icons.Default.Send,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(35.dp)
-                        .padding(start = 12.dp, end = 12.dp),
-                    tint = Color.White
-                )
+                Text(
+                    text = "Tổng 100 bình luận",
+                    color = Color.White
+                    )
             }
+            //listComment
+            LazyColumn{
+                items(10){
+                    CommentItem()
+                }
+            }
+        }
+        //Comment TextBox
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 15.dp, vertical = 20.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.deba),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(Color.Red)
+            )
+            OutlinedTextField(
+                value = commentValue,
+                onValueChange = { commentValue = it },
+                label = null,
+                placeholder = {
+                    Text(text = "Viết gì đó", fontSize = 10.sp)
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    containerColor = Color.Black,
+                    focusedTextColor = Color.White,
+                    unfocusedTextColor = Color.White
+                ),
+                modifier = Modifier
+                    .padding(horizontal = 5.dp)
+                    .fillMaxWidth(0.9f)
+                    .height(45.dp),
+                shape = RoundedCornerShape(30.dp),
+                maxLines = 1,
+                textStyle = TextStyle(fontSize = 10.sp)
+
+            )
+            Icon(
+                imageVector = Icons.Default.Send,
+                contentDescription = null,
+                tint = Color.White,
+                modifier = Modifier.clickable { }
+            )
         }
     }
 }
 
 @Composable
 fun CommentItem() {
-    Row(
+    Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 8.dp)
+            .padding(15.dp),
+        colors = CardDefaults.cardColors(Color.Transparent)
     ) {
-        Image(
-            painterResource(id = R.drawable.deba),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 8.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(15.dp)
         ) {
-            Text(text = "username", fontWeight = FontWeight.Bold)
-            Text(text = "content chat")
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+            Image(
+                painter = painterResource(id = R.drawable.deba),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(Color.Red)
+            )
+            Column(
+                verticalArrangement = Arrangement.spacedBy(5.dp)
             ) {
-                Text(text = "22 giờ trước")
-                LazyRow(contentPadding = PaddingValues(4.dp)) {
-                    item {
-                        Icon(Icons.Default.Share, contentDescription = null)
-                        Icon(Icons.Default.Share, contentDescription = null)
-                        Icon(Icons.Default.Share, contentDescription = null)
+                Text(
+                    text = "Lê Tuấn Kha",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "Tập này hay quáaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    color = Color.White,
+                    fontWeight = FontWeight.Light,
+                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "22 giờ trước",
+                        color = Color.White,
+                        fontWeight = FontWeight.Light
+                    )
+                    Row(
+
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.MoreVert,
+                            contentDescription = null,
+                            tint = Color(0xFFC2C2C2)
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Comment,
+                            contentDescription = null,
+                            tint = Color(0xFFC2C2C2),
+                            modifier = Modifier.padding(end = 5.dp)
+                        )
+                        Icon(
+                            imageVector = Icons.Default.ThumbUp,
+                            contentDescription = null,
+                            tint = Color(0xFFC2C2C2)
+                        )
                     }
                 }
             }
