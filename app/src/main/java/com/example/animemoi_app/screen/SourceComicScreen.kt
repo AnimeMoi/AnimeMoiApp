@@ -29,8 +29,7 @@ fun SourceComicScreen(navController: NavHostController) {
 
     ComeBack(title = stringResource(id = R.string.select_source), navController = navController)
     LazyColumn(
-        modifier = Modifier.padding(start = 12.dp, top = 60.dp, end = 12.dp),
-        contentPadding = PaddingValues(12.dp)
+        modifier = Modifier.padding(start = 12.dp, top = 60.dp, end = 12.dp), contentPadding = PaddingValues(12.dp)
     ) {
         items(items) { item ->
             Row(
@@ -40,19 +39,14 @@ fun SourceComicScreen(navController: NavHostController) {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Image(
-                    painterResource(id = item.icon),
-                    contentDescription = null,
-                    modifier = Modifier.size(50.dp)
+                    painterResource(id = item.icon), contentDescription = null, modifier = Modifier.size(50.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = item.name,
-                    modifier = Modifier.align(Alignment.CenterVertically),
-                    color = Color.White
+                    text = item.name, modifier = Modifier.align(Alignment.CenterVertically), color = Color.White
                 )
                 Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.CenterEnd
+                    modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd
                 ) {
                     Icon(
                         Icons.Default.Add, contentDescription = null,

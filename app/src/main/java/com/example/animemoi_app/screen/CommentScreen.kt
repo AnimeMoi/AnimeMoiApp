@@ -65,8 +65,7 @@ fun CommentScreen(title: String, navController: NavHostController, modifier: Mod
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = stringResource(id = R.string.comments),
-                    fontWeight = FontWeight.Bold
+                    text = stringResource(id = R.string.comments), fontWeight = FontWeight.Bold
                 )
                 Text(text = stringResource(id = R.string.total_comments))
             }
@@ -82,38 +81,32 @@ fun CommentScreen(title: String, navController: NavHostController, modifier: Mod
             modifier = Modifier.fillMaxSize()
         ) {
             Row(
-                modifier = Modifier
-                    .align(Alignment.BottomStart),
+                modifier = Modifier.align(Alignment.BottomStart),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Box(
                     modifier = Modifier.weight(1f) // Set weight for TextField
                 ) {
-                    TextField(
-                        value = commentValue,
-                        onValueChange = { value ->
-                            commentValue = value
-                        },
-                        placeholder = {
-                            Text(
-                                text = "Viết gì đó",
-                                modifier = Modifier
-                                    .padding(start = 8.dp)
-                                    .background(Color.Black),
-                                color = Color.White
-                            )
-                        },
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color.Black,
-                            unfocusedContainerColor = Color.Black,
-                            disabledContainerColor = Color.Black,
-                            unfocusedTextColor = Color.White,
-                            focusedTextColor = Color.White
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(60.dp))
+                    TextField(value = commentValue, onValueChange = { value ->
+                        commentValue = value
+                    }, placeholder = {
+                        Text(
+                            text = "Viết gì đó",
+                            modifier = Modifier
+                                .padding(start = 8.dp)
+                                .background(Color.Black),
+                            color = Color.White
+                        )
+                    }, colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Black,
+                        unfocusedContainerColor = Color.Black,
+                        disabledContainerColor = Color.Black,
+                        unfocusedTextColor = Color.White,
+                        focusedTextColor = Color.White
+                    ), modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(60.dp))
                     )
                 }
                 Icon(
@@ -152,8 +145,7 @@ fun CommentItem() {
             Text(text = "username", fontWeight = FontWeight.Bold)
             Text(text = "content chat")
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {

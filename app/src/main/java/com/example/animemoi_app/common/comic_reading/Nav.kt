@@ -33,23 +33,17 @@ fun NavDetailComic() {
     ) {
         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null, tint = Color.White)
         Icon(imageVector = Icons.Default.SyncAlt, contentDescription = null, tint = Color.White)
-        Row() {
+        Row {
             Icon(
-                imageVector = Icons.Default.ArrowBackIos,
-                contentDescription = null,
-                tint = Color.White
+                imageVector = Icons.Default.ArrowBackIos, contentDescription = null, tint = Color.White
             )
             Text(text = "1", color = Color.White)
             Icon(
-                imageVector = Icons.Default.Minimize,
-                contentDescription = null,
-                tint = Color.White
+                imageVector = Icons.Default.Minimize, contentDescription = null, tint = Color.White
             )
             Text(text = "10", color = Color.White)
             Icon(
-                imageVector = Icons.Default.ArrowForwardIos,
-                contentDescription = null,
-                tint = Color.White
+                imageVector = Icons.Default.ArrowForwardIos, contentDescription = null, tint = Color.White
             )
         }
         Icon(imageVector = Icons.Default.Warning, contentDescription = null, tint = Color.White)

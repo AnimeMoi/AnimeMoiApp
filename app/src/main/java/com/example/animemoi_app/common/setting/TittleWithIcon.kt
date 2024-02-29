@@ -15,27 +15,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TitleWithIcon(title: String, icon: ImageVector) {
+fun TitleWithIcon(title: String, icon: ImageVector, modifier: Modifier = Modifier) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp, 0.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(8.dp, 0.dp), verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = title,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
-            modifier = Modifier
-                .fillMaxWidth(0.9f)
+            modifier = modifier.fillMaxWidth(0.9f)
         )
 
         Icon(
-            icon,
-            contentDescription = "Icon",
-            tint = Color.White,
-            modifier = Modifier.fillMaxWidth()
+            icon, contentDescription = "Icon", tint = Color.White, modifier = modifier.fillMaxWidth()
         )
     }
 }
