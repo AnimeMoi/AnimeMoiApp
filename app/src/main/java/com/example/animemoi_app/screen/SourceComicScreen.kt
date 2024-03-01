@@ -1,6 +1,7 @@
 package com.example.animemoi_app.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -27,30 +28,34 @@ import com.example.animemoi_app.model.SourceComic
 fun SourceComicScreen(navController: NavHostController) {
     val items = SourceData().loadSourceData()
 
-    ComeBack(title = stringResource(id = R.string.select_source), navController = navController)
-    LazyColumn(
-        modifier = Modifier.padding(start = 12.dp, top = 60.dp, end = 12.dp), contentPadding = PaddingValues(12.dp)
-    ) {
-        items(items) { item ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Image(
-                    painterResource(id = item.icon), contentDescription = null, modifier = Modifier.size(50.dp)
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = item.name, modifier = Modifier.align(Alignment.CenterVertically), color = Color.White
-                )
-                Box(
-                    modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd
+    Box(modifier = Modifier.fillMaxSize().background(Color.Black)){
+        ComeBack(title = stringResource(id = R.string.select_source), navController = navController)
+        LazyColumn(
+            modifier = Modifier
+                .padding(start = 12.dp, top = 60.dp, end = 12.dp), contentPadding = PaddingValues(16.dp)
+        ) {
+            items(items) { item ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Icon(
-                        Icons.Default.Add, contentDescription = null,
+                    Image(
+                        painterResource(id = item.icon), contentDescription = null, modifier = Modifier.size(50.dp)
                     )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = item.name, modifier = Modifier.align(Alignment.CenterVertically), color = Color.White
+                    )
+                    Box(
+                        modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd
+                    ) {
+                        Icon(
+                            Icons.Default.Add, contentDescription = null,
+                            tint = Color(0xFFFF6666)
+                        )
+                    }
                 }
             }
         }
